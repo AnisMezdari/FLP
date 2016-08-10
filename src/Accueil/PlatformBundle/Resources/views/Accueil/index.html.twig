@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+  <div class = "conteneur">
+
+  	<h1>Accueil</h1>
+  	{{image}}
+  	
+  	<div class = "conteneurImage" id= "fileList">
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/lion.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/nemo.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/panda.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/tod.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/visage.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/lion.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/lion.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/nemo.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/panda.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/tod.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/visage.jpg')}}" alt = "bla" />
+  		<img class = "imageAccueil" src = "{{asset('bundles/images/lion.jpg')}}" alt = "bla" />
+  	</div>
+  	<div class = "conteneurBouton">
+		
+  	<input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
+  	<input type="hidden" value="{{ path('accueil_platform_ajout_photo') }}" id =  "lienAjoutPhoto" />
+  	<input name="bouton" id="boutonUpload" value="Upload" type="submit" />
+		 
+  	</div>
+  </div>
+
+{% endblock %}

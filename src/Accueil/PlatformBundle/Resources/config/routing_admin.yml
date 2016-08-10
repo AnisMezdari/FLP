@@ -1,0 +1,18 @@
+accueil_platform_affichage_listePhoto:
+    path:     /liste/photo
+    defaults: { _controller: AccueilPlatformBundle:Accueil:affichage_listePhoto }
+
+
+accueil_platform_ajout_photo:
+    path:     /ajout/photo
+    defaults: { _controller: AccueilPlatformBundle:Accueil:ajout_photo }
+
+
+accueil_platform_suppression_photo:
+    path:     /suppression/photo
+    defaults: { _controller: AccueilPlatformBundle:Accueil:suppression_photo }
+
+
+accueil_platform_trie_listePhoto:
+    path:     /
+    defaults: { _controller: AccueilPlatformBundle:Accueil:trie_listePhoto }

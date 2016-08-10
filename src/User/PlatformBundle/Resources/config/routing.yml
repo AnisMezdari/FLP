@@ -1,0 +1,3 @@
+user_platform_homepage:
+    path:     /
+    defaults: { _controller: UserPlatformBundle:Default:index }

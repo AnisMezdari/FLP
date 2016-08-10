@@ -1,0 +1,196 @@
+*************************************************************** Routeur ************************************************** 
+
+
+on peut voir la liste des routes en cliquant sur la barre doutil -> router
+
+on peut avoir un ou plusieur parametre -> {param}/{param2}.{param3}
+
+on peut créer des contraintes en faisant ->  requirements:
+										        year:   \d{4}
+										        format: html|xml
+
+on peut récupérer une URL  -> $url = $this->get('router')->generate(
+						            'oc_platform_view', // 1er argument : le nom de la route
+						            array('id' => 5)    // 2e argument : les valeurs des paramètre
+						        );
+
+URL absolue -> UrlGeneratorInterface::ABSOLUTE_URL
+
+
+depuis la vue ->
+
+<a href="{{ path('oc_platform_view', { 'id': advert_id }) }}">
+
+    Lien vers l'annonce d'id {{ advert_id }}
+
+</a>        
+
+
+
+
+************************************************************* Controller **************************************************
+
+GET -> $request->query->get('tag')
+POST -> $request->request->get('tag')
+COOKIE -> $request->cookies->get('tag')
+SERVER -> $request->server->get('REQUEST_URI')
+
+
+Avec cette façon d'accéder aux paramètres, vous n'avez pas besoin de tester leur existence. Par exemple, si vous écrivez  $request->query->get('sdf') alors que le paramètre sdf n'est pas défini dans l'URL, cela vous retournera une chaîne vide, et non une erreur.
+
+
+pour savoir quelle type de requête ->
+if ($request->isMethod('POST'))
+{
+  // Un formulaire a été envoyé, on peut le traiter ici
+}
+
+
+Pour savoir si c une requete ajax ->
+
+if ($request->isXmlHttpRequest())
+{
+  // C'est une requête AJAX, retournons du JSON, par exemple
+}
+
+Pour plus de renseignement : http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/Request.html
+
+
+Pour retourner une response tout en respectant larchitecture MVC : 
+
+// On utilise le raccourci : il crée un objet Response
+// Et lui donne comme contenu le contenu du template
+return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
+  'id'  => $id,
+  'tag' => $tag,
+));
+
+
+redirection : 
+   return $this->redirectToRoute('oc_platform_home');
+
+
+
+Si la redirection va trop vite : 
+
+Symfony a la réponse ! Je vous invite dès maintenant à modifier la valeur du paramètre intercept_redirects  à true dans le fichier app/config/config_dev.yml. 
+
+
+
+Session : 
+
+	// Récupération de la session
+    $session = $request->getSession();
+    // On récupère le contenu de la variable user_id
+    $userId = $session->get('user_id');
+    // On définit une nouvelle valeur pour cette variable user_id
+    $session->set('user_id', 91);
+
+
+
+message flash :
+	controller :
+		$session->getFlashBag()->add('info', 'Annonce bien enregistrée');
+	vue :
+	    <div>
+	      {# On affiche tous les messages flash dont le nom est « info » #}
+	      {% for message in app.session.flashbag.get('info') %}
+	        <p>Message flash : {{ message }}</p>
+	      {% endfor %}
+	    </div>
+
+
+
+personnaliser une page 404 : https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2/personnaliser-les-pages-d-erreur
+
+
+
+
+
+
+************************************************************* Twig **************************************************
+
+
+Afficher une variable en lui appliquant un filtre. Ici, « upper » met tout en majuscules : Pseudo en majuscules : {{ pseudo|upper }}
+
+Date : {{ date|date('d/m/Y') }}
+
+concaténation : Identité : {{ nom ~ " " ~ prenom }}
+
+
+filtre utile : 
+
+upper -> {{ var|upper }}
+striptags -> {{ var|striptags }}
+date - > {{ date|date('d/m/Y') }}  ( Date d'aujourd'hui : {{ "now"|date('d/m/Y') }} )
+format -> {{ "Il y a %s pommes et %s poires"|format(153, nb_poires) }}   ( comme le printf) 
+length -> Longueur de la variable : {{ texte|length }}  Nombre d'éléments du tableau : {{ tableau|length }}
+raw< -> désactive la protection html
+sinon -> http://twig.sensiolabs.org/doc/filters/index.html
+
+
+variable global :
+
+	{{ app }}
+
+		app.request
+		app.session
+		app.environnement -> dev ou prod
+		app.debug -> true si le mode debug est activé
+		app.user -> l'utilisateur courant
+
+
+IF ELSE  -> 
+
+	{% if membre.age < 12 %}
+	  Il faut avoir au moins 12 ans pour ce film.
+	{% elseif membre.age < 18 %}
+	  OK bon film.
+	{% else %}
+	  Un peu vieux pour voir ce film non ?
+	{% endif %}
+
+
+FOR  -> 
+
+  {% for membre in liste_membres %}
+    <li>{{ membre.pseudo }}</li>
+  {% else %}
+    <li>Pas d'utilisateur trouvé.</li>
+  {% endfor %}
+
+FOR + option -> 
+
+  {% for valeur, option in liste_options %}
+    <option value="{{ valeur }}">{{ option }}</option>
+  {% endfor %}
+
+
+SET  ->
+
+{% set foo = 'bar' %}
+
+
+FOR -> Variabel Loop fournit ->
+
+loop.index ->  Le numéro de l'itération courante (en commençant par 1)
+loop.index0 -> Le numéro de l'itération courante (en commençant par 0)
+loop.revindex -> Le nombre d'itérations restantes avant la fin de la boucle (en finissant par 1).
+loop.revindex0 -> Le nombre d'itérations restantes avant la fin de la boucle (en finissant par 0).
+loop.first -> true si c'est la première itération, false sinon.
+loop.last ->true si c'est la dernière itération, false sinon.
+loop.length -> Le nombre total d'itérations dans la boucle.
+
+
+defined {% if var is defined %} … {% endif %}
+even et odd -> pair et impair ( respectivement )
+pour plus de detail -> http://twig.sensiolabs.org/doc/tests/index.html
+
+
+inclusion : {{ include("OCPlatformBundle:Advert:form.html.twig") }}
+
+
+LIEN vers dautre route : 
+{{ path('oc_platform_home') }}
+
+
