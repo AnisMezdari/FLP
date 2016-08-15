@@ -24,7 +24,7 @@ class Accueil
     /**
      * @var string
      *
-     * @ORM\Column(name="urlImage", type="string", length=255, unique=true)
+     * @ORM\Column(name="urlImage", type="string", length=255, unique=false)
      */
     private $urlImage;
 
