@@ -1,0 +1,59 @@
+.conteneur{
+	width : 78%;
+	margin : auto;
+
+}
+.conteneurBouton{
+	margin-top : 15px;
+	width: 100%;
+	text-align:center;
+}
+#filesToUpload{
+	margin-left : 37%;
+}
+
+.conteneurImage{
+	text-align : left;
+	display: inline-block;
+}
+.conteneurUneImage{
+	position : relative;
+	width: 150px;
+	height: 100px;
+	display: inline-block;
+	cursor: pointer;
+	margin-top : 25px;
+	vertical-align: top;
+}
+
+.imageAccueil{
+	width: 150px;
+	height: 100px;
+}
+.conteneurUneImage:hover .imageAccueil {
+	opacity: 0.5;
+}
+
+.croixSuppression{
+	position: absolute!important;
+	font-size: 20px;
+	right: 0.1em;
+	opacity :0;
+	color : white;
+}
+.croixSuppression:hover{
+	color : red;
+}
+
+.conteneurUneImage:hover .croixSuppression {
+	opacity: 1;
+}
+
+.separateurImage{
+	width : 40px;
+	height : 150px;
+	display: inline-block;
+
+}
+
+

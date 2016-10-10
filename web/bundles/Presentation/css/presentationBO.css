@@ -1,0 +1,23 @@
+.conteneurPresentation{
+	margin : auto;
+	width : 100%;
+	text-align: center!important; 
+}
+
+.conteneurTitrePresentation {
+	padding-left : 30%;
+}
+
+.titrePresentation {
+	width : 60%!important;
+}
+
+.conteneurImagePresentation{
+	display : inline-block;
+
+}
+
+.conteneurTextePresentation{
+	display : inline-block;
+	width: 10%;
+}
