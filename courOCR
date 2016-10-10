@@ -1,4 +1,4 @@
-*************************************************************** Routeur ************************************************** 
+*************************************************************** Routeure ************************************************** 
 
 
 on peut voir la liste des routes en cliquant sur la barre doutil -> router
@@ -198,9 +198,37 @@ LIEN vers dautre route :
 
 ------------------------------------------------------------BDDDBDD-------------------------------------------------
 
+php bin/console doctrine:generate:entity    // générer une entité
+
+	1) NomPlatformBundle:nom    // obligatoire sous ce format
+
+	2) entree
+
+	3) taper les attribut de la bdd
+	
+
+
+// 				UPDATE DE LA BDD
+
 php bin/console doctrine:schema:update --dump-sql
 
 php bin/console doctrine:schema:update --force
 
+
+
+
+-----------------------------------------------------créer un bundle-------------------------------------------------
+
+php bin/console generate:bundle
+
+yes
+
+Nom/PlatformBundle
+
+NomPlatformBundle
+
+entree
+
+yml
 
 

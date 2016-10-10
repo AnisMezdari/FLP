@@ -28,6 +28,12 @@ class Accueil
      */
     private $urlImage;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="position", type="integer")
+     */
+    private $position;
 
     /**
      * Get id
@@ -62,5 +68,32 @@ class Accueil
     {
         return $this->urlImage;
     }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     *
+     * @return Accueil
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+
+
 }
 

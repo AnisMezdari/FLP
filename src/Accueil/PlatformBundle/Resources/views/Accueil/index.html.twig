@@ -5,24 +5,27 @@
   <div class = "conteneur">
 
   	<h1>Accueil</h1>
-  	
+    
+	   <div class = "conteneurBouton">
+      <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
+      <input type="hidden" value="{{ path('accueil_platform_ajout_photo') }}" id =  "lienAjoutPhoto" />
+      <input name="bouton" id="boutonUpload" value="Upload" type="submit" />
+      <input type="hidden" id="lienSuppressionPhotonu2" value="{{ path('accueil_platform_suppression_photo') }}" />
+    </div>
+
   	<div class = "conteneurImage" id= "fileList">
       {% for photo in photos %}
-        <div class = "conteneurUneImage" id= "img-{{photo.id}}" >
-          <img class = "imageAccueil"   src = "{{ photo.urlImage }}" alt = "img" />
+        <div class = "separateurImage" id = "{{photo.id}}" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </div>
+        <div class = "conteneurUneImage" id= "img-{{photo.id}}" onclick = "draganddrop(this)"draggable="true" ondragstart="drag(event)"> 
+          <img class = "imageAccueil" id= "imgg-{{photo.id}}"  src = "{{ photo.urlImage }}" alt = "img" />
           <span  id= "{{photo.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppression" > </span>
           <input type="hidden" value="{{ path('accueil_platform_suppression_photo') }}" id =  "lienSuppressionPhoto" />
         </div>
-      {% endfor %}
 
+      {% endfor %}
   	</div>
-  	<div class = "conteneurBouton">
-		
-    	<input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
-    	<input type="hidden" value="{{ path('accueil_platform_ajout_photo') }}" id =  "lienAjoutPhoto" />
-    	<input name="bouton" id="boutonUpload" value="Upload" type="submit" />
-  		<input type="hidden" id="lienSuppressionPhotonu2" value="{{ path('accueil_platform_suppression_photo') }}" />
-  	</div>
+
   </div>
 
 {% endblock %}

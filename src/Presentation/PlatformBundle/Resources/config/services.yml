@@ -1,0 +1,4 @@
+services:
+#    presentation_platform.example:
+#        class: Presentation\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

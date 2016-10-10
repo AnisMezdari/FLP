@@ -17,7 +17,7 @@ use Accueil\PlatformBundle\Entity\Accueil;
 class AccueilController extends Controller
 {
    /**
-    * retourne la liste des lien de photos récupéré depuis la bdd
+    * retourne la liste des liens de photos récupéré depuis la bdd
     * @return liste des liens de photo
     *
     */
@@ -26,7 +26,6 @@ class AccueilController extends Controller
         // récupération des données de la table Accueil
         $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
         $photos = $repository->findAll();
-
         // redirection vers la liste des photo
     	return  $this->render('AccueilPlatformBundle:Accueil:index.html.twig', array("photos" => $photos));
 
@@ -90,7 +89,6 @@ class AccueilController extends Controller
         $params = array();
         $content = $request->getContent();
         $params = json_decode($content ,true); 
-        var_dump($params);
         $em = $this->getDoctrine()->getManager();
         $accueil = $em->getRepository('AccueilPlatformBundle:Accueil')->find($params["idPhoto"]);
         $em->remove($accueil);

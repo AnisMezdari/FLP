@@ -1,0 +1,26 @@
+
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+	<form  method = "POST" action= "{{path('presentation_platform_modification')}}" class = "conteneurPresentation">
+		<input type="submit" name="bouton" value="Modifier" class="boutonPresentation"/>
+		<div class = "conteneurTitrePresentation">
+			<h1> <input class = "titrePresentation form-control" type="text" value = "{{presentation.titre}}" name="titre" size="45" /> </h1>
+		</div>
+
+		<div class = "conteneurImagePresentation">
+			<img src = "{{asset('bundles/images/imen.jpg')}}" alt = "Image de présentation" />
+		</div>
+
+		<div  class = "conteneurTextePresentation">
+			<div class="form-group">
+	    		<textarea class ="form-control" name = "texte" id="exampleTextarea" >
+					{{presentation.texte}}
+				</textarea>
+	 		</div>
+		</div>
+	</form>
+
+
+{% endblock %}
