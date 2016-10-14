@@ -1,3 +1,7 @@
+contact_platform:
+    resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
 presentation_platform:
     resource: "@PresentationPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur

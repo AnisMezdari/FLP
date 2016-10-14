@@ -1,51 +1,50 @@
 <?php
 
-namespace Presentation\PlatformBundle\Controller;
+namespace Contact\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Presentation\PlatformBundle\Entity\presentation;
+use ContactController\PlatformBundle\Entity\contact;
 
-class PresentationController extends Controller
+class ContactController extends Controller
 {
-	/*
-	 * Retourne le titre , le lien de la photo et le texte de la BDD
-	 */
     public function affichageAction()
     {
-
-        // Récupération des données de la table Accueil
-        $repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
-        $presentation = $repository->find(1);
+         // Récupération des données de la table Accueil
+        $repository = $this->getDoctrine()->getRepository('ContactPlatformBundle:contact');
+        $contact = $repository->find(1);
 
         // Envoi des données à la vue
-        return $this->render('PresentationPlatformBundle:Presentation:index.html.twig',array("presentation" =>$presentation ));
+        return $this->render('ContactPlatformBundle:Contact:index.html.twig',array("contact" =>$contact));
     }
 
-    /*
-     * Modifie la bdd en fonction des valeurs envoyées par le formulaire
-     */
     public function modificationAction(Request $request)
     {
-    	// Récupération des données du formulaire
+
+        // Récupération des données du formulaire
     	$titre = $request->request->get('titre');
-    	$texte = $request->request->get('texte');
+    	$adresse = $request->request->get('adresse');
+    	$email = $request->request->get('email');
+    	$tel = $request->request->get('tel');
     	$image = $request->request->get('image');
-        $images = $request->files->all();
+    	$images = $request->files->all();
 
     	// Changement en base de données
-    	$repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
-        $presentation = $repository->find(1);
-        $presentation->setTitre($titre);
-        $presentation->setTexte($texte);
+    	$repository = $this->getDoctrine()->getRepository('ContactPlatformBundle:contact');
+        $contact = $repository->find(1);
+        $contact->setTitre($titre);
+        $contact->setAdresse($adresse);
+        $contact->setEmail($email);
+        $contact->setTelephone($tel);
+
         if($images["image"] != NULL ){
-            $image = $this->uploadImage($image, $request);
-            $presentation->setUrlImage($image);
+			$image = $this->uploadImage($image, $request);
+    		$contact->setUrlImage($image);
         }
         $em = $this->getDoctrine()->getManager();
-        $em->persist($presentation);
+        $em->persist($contact);
         
         try{
             $em->flush();
@@ -63,7 +62,6 @@ class PresentationController extends Controller
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
     	// récupération de l'image 
     	$images = $request->files->all();
-    	// var_dump($images)
     	$image = $images["image"];
 
     	 // Ajout de la photo dans le serveur

@@ -1,23 +1,49 @@
+
 .conteneurPresentation{
 	margin : auto;
-	width : 100%;
-	text-align: center!important; 
+	width : 79%;
+	
 }
-
+.conteneurBoutonPresentation{
+	text-align: center; 
+	margin-left : 2%;
+}
 .conteneurTitrePresentation {
 	padding-left : 30%;
+	text-align: center; 
+	margin-left : 2%;
 }
 
 .titrePresentation {
 	width : 60%!important;
+	
 }
 
+.conteneurImagePresentationAndTextePresentation{
+	margin-top : 50px;
+	width : 100%;
+	text-align: left;
+}
 .conteneurImagePresentation{
 	display : inline-block;
+	margin-left : 0%;
+	vertical-align: top;
+	margin-right: 5%;
+}
+.imagePresentation{
+	width : 160px;
+	height : 160px;
+}
 
+.fileImagePresentation{
+	margin-top : 10px;
 }
 
 .conteneurTextePresentation{
 	display : inline-block;
-	width: 10%;
+	width: 60%;
+}
+#exampleTextarea{
+	height : 200px;
+
 }

@@ -1,0 +1,32 @@
+.conteneurContact{
+	margin : auto;
+	width : 79%;
+	text-align: center;
+}
+.titreContact{
+	margin-bottom : 25px;
+	text-align: left;
+}
+
+.conteneurbouton{
+	margin-bottom : 40px;
+}
+.conteneurContactImage{
+	display : inline-block;
+	vertical-align: top;
+}
+.imageContact {
+	width : 160px;
+	height : 160px;
+	margin-bottom : 15px;
+}
+
+.conteneurContactFormulaire{
+	display : inline-block;
+	margin-left : 13%;
+	width : 35%;
+}
+
+.conteneurContactFormulaire input{
+	margin-bottom : 20px;
+}
