@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+	<div class = "conteneurPorfolio">
+		<h1 class = "titrePortfolio"> Portfolio </h1>
+
+		<div class = "conteneurCategoriePortfolio">
+			{% for categorie in categories %}
+				<div class ="btn btn-default categoriePortfolio">
+					{{categorie.valeur}}
+				</div>
+			{% endfor %}
+			<button class = "btn btn-primary boutonCategoriePortfolio"> 
+				Modifier
+			</button> 			
+		</div>
+
+		<div class = "conteneurImagesEtUploadPortfolio">
+			<div class = "conteneurUploadPorfolio">
+				<input type = "file" name = "image" class = "uploadPorfolio" />
+				<input  type = "submit" value = "Upload"  class = "boutonUploadPortfolio " /> 
+			</div>
+
+			<div class = "conteneurImagesPortfolio">
+				{# boucle liste images #} 
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/imen.jpg')}}" alt = "" class = "imagePortfolio" />
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/lion.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/nemo.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/panda.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/tod.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/visage.jpg')}}" alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/imen.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+				<div class = "conteneurImagePortfolio">
+					<img src = "{{asset('bundles/images/lion.jpg')}}"  alt = "" class = "imagePortfolio"/>
+					<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+{% endblock %}

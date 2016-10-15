@@ -1,3 +1,7 @@
+portfolio_platform:
+    resource: "@PortfolioPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
 contact_platform:
     resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur

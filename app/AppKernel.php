@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Accueil\PlatformBundle\AccueilPlatformBundle(),
             new Presentation\PlatformBundle\PresentationPlatformBundle(),
             new Contact\PlatformBundle\ContactPlatformBundle(),
+            new Portfolio\PlatformBundle\PortfolioPlatformBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

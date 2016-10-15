@@ -1,8 +1,8 @@
 presentation_platform_affichage:
-    path:     /presentation
+    path:     /presentation/affichage
     defaults: { _controller: PresentationPlatformBundle:Presentation:affichage }
 
 presentation_platform_modification:
-    path:     /modification
+    path:     /presentation/modification
     defaults: { _controller: PresentationPlatformBundle:Presentation:modification }
 

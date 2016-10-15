@@ -1,0 +1,78 @@
+.conteneurPorfolio {
+	margin : auto;
+	width : 79%;
+	text-align: center;
+}
+.titrePortfolio{
+	margin-bottom : 25px;
+	text-align: left;
+}
+
+.categoriePortfolio , .boutonCategoriePortfolio{
+	display : inline-block;
+	vertical-align: top;
+}
+.conteneurCategoriePortfolio {
+	margin-right : 2%;
+}
+.boutonCategoriePortfolio {
+	margin-left : 2%;
+}
+
+.conteneurImagesEtUploadPortfolio {
+	margin-top: 55px;
+}
+
+.conteneurUploadPorfolio {
+
+}
+.uploadPorfolio{
+	display : initial!important;
+	margin-right : 20px;
+}
+.boutonUploadPortfolio{
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color : #337ab7;
+	color : white;
+	border-color: #2e6da4;
+	font-size: 13px;
+}
+.conteneurImagesPortfolio{
+
+}
+
+.conteneurImagePortfolio {
+	position : relative;
+	display : inline-block;
+	vertical-align: top;
+	width: 150px;
+	height: 100px;
+	margin-top: 25px;
+	cursor: pointer;
+}
+.imagePortfolio{
+	width: 150px;
+	height: 100px;
+}
+.conteneurImagePortfolio:hover .imagePortfolio {
+	opacity: 0.5;
+}
+
+.croixSuppressionPortfolio{
+	position: absolute!important;
+	font-size: 20px;
+	right: 0.1em;
+	opacity :0;
+	color : white;
+}
+
+.conteneurImagePortfolio:hover .croixSuppressionPortfolio {
+	opacity: 1;
+}
+.croixSuppressionPortfolio:hover{
+	color : red;
+}
+
+
+

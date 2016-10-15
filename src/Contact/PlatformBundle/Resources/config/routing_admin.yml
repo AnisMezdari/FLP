@@ -1,7 +1,7 @@
 contact_platform_affichage:
-    path:     /contact
+    path:     /contact/affichage
     defaults: { _controller: ContactPlatformBundle:Contact:affichage }
 
 contact_platform_modification:
-    path:     /modification/contact
+    path:     /contact/modification
     defaults: { _controller: ContactPlatformBundle:Contact:modification }

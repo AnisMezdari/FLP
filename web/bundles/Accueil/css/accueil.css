@@ -41,12 +41,11 @@
 	opacity :0;
 	color : white;
 }
-.croixSuppression:hover{
-	color : red;
-}
-
 .conteneurUneImage:hover .croixSuppression {
 	opacity: 1;
+}
+.croixSuppression:hover{
+	color : red;
 }
 
 .separateurImage{
