@@ -1,3 +1,9 @@
 portfolio_platform_affichage:
     path:     /portfolio/affichage
     defaults: { _controller: PortfolioPlatformBundle:Portfolio:affichage }
+portfolio_platform_modification:
+    path:     /portfolio/modification
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:modification }
+portfolio_platform_modificationCategorie:
+    path:     /portfolio/modification/categorie
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:modificationCategorie }

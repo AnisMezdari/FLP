@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+
+	<div class = "conteneurPorfolioModification">
+		<h1 class = "titrePortfolioModification"> Portfolio / Catégorie </h1>
+
+		<form action = "{{path('portfolio_platform_modificationCategorie')}}" method = "post" class = "conteneurFormulairePortfolioModif">
+			<div class = "conteneurInputPortfolioModif">
+				<input type = "submit" name = "boutonMoficationCategorie" value = "Modifier"  />
+			</div>
+			{% for categorie in categories %}
+				<div class = "conteneurInputPortfolioModif">
+					<input type = "text" name = "categorie{{loop.index}}" value = "{{categorie.valeur}}" class = "form-control inputPortfolioModif"/>
+					<input type = "hidden" name= "idCategorie{{loop.index}}" value = "{{categorie.id}}"/>
+				</div>
+				<input type = "hidden" name = "nombreCategorie" value = "{{loop.length}}"  />
+			{% endfor %}
+		</form>
+
+		<div>
+			<button class = "btn btn-primary" id = "boutonAjouterCategoriePortfolio"> 
+				Ajouter
+			</button>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+.conteneurPorfolioModification {
+	margin : auto;
+	width : 79%;
+	text-align: center;
+}
+
+.titrePortfolioModification{
+	text-align: left;
+}
+.conteneurFormulairePortfolioModif{
+	display: inline-block;
+	width: 50%;
+}
+
+.inputPortfolioModif{
+	margin-top : 25px;
+
+}
+
+#boutonAjouterCategoriePortfolio{
+	margin-top : 30px;
+}
