@@ -67,5 +67,29 @@ class portfolio
         return $this->urlImage;
     }
 
+    /**
+     * Set categorie
+     *
+     * @param categorie $categorie
+     *
+     * @return portfolio
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
 }
 

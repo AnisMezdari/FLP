@@ -4,7 +4,7 @@
 
   <div class = "conteneur">
 
-  	<h1>Accueil</h1>
+  	<h1 class = "titreAccueil">Accueil</h1>
     
 	   <div class = "conteneurBouton">
       <input name="filesToUpload[]" id="filesToUpload" type="file" multiple="" />
@@ -15,9 +15,7 @@
 
   	<div class = "conteneurImage" id= "fileList">
       {% for photo in photos %}
-        <div class = "separateurImage" id = "{{photo.id}}" ondrop="drop(event)" ondragover="allowDrop(event)">
-        </div>
-        <div class = "conteneurUneImage" id= "img-{{photo.id}}" onclick = "draganddrop(this)"draggable="true" ondragstart="drag(event)"> 
+        <div class = "conteneurUneImage" id= "img-{{photo.id}}"> 
           <img class = "imageAccueil" id= "imgg-{{photo.id}}"  src = "{{ photo.urlImage }}" alt = "img" />
           <span  id= "{{photo.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppression" > </span>
           <input type="hidden" value="{{ path('accueil_platform_suppression_photo') }}" id =  "lienSuppressionPhoto" />

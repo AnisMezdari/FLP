@@ -21,7 +21,7 @@ $( "#boutonUpload" ).click(function() {
 	        	$(".conteneurImage").
 		        append('<div class = "conteneurUneImage" id= "img-' + data.id[i] + '"> '+
 		          '<img class = "imageAccueil" src = "' + data.urlImage[i] + '" alt = "img" />'+
-		          '<span  id= "img-' + data.id[i] + '" class="glyphicon glyphicon-remove fa-lg croixSuppression" onclick="suppressionPhoto(this)"> </span>'+
+		          '<span  id= "img-' + data.id[i] + '" class="glyphicon glyphicon-remove fa-lg croixSuppression"> </span>'+
 		          '<input type="hidden" value="' + urlSuppression + '" id =  "lienSuppressionPhoto" />'+
 		        '</div>');
 	        }
@@ -36,17 +36,14 @@ $( "#boutonUpload" ).click(function() {
 });
 
 
-$( ".croixSuppression" ).on("click", suppressionPhoto);
-
-function suppressionPhoto(element) {
+$( ".croixSuppression" ).click(function() {
 	// console.log($(this).attr("id"));
-	if($(this).attr("id") != null){
-		element.id = "img-" + $(this).attr("id");
-	}
+	var element = $(this).attr("id");
+
 	console.log("c passe");
 
 	var lien = $("#lienSuppressionPhoto").val();
-	var idPhoto = element.id;
+	var idPhoto = element;
 	console.log(lien);
 	console.log(idPhoto);
 	jQuery.ajax({
@@ -55,7 +52,7 @@ function suppressionPhoto(element) {
 	    contentType: "application/json",
 	    type: 'POST',
 	    success: function(data){
-	    	$("#" + idPhoto).remove();
+	    	$("#img-" + idPhoto).remove();
 	    },
 	    error: function (data) {
         	console.log(data.responseText);
@@ -63,54 +60,51 @@ function suppressionPhoto(element) {
     	}
 	})
 
-}
+});
 
 
 // DRAG AND DROP
 
 
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+// function allowDrop(ev) {
+//     ev.preventDefault();
+// }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-}
+// function drag(ev) {
+//     ev.dataTransfer.setData("text", ev.target.id);
+// }
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    console.log(data);
-    var images = $("#fileList").children();
+// function drop(ev) {
+//     ev.preventDefault();
+//     var data = ev.dataTransfer.getData("text");
+//     console.log(data);
+//     var images = $("#fileList").children();
 
-    var i;
-	var idPrecedentZ = data;
-	var res = idPrecedentZ.split("-");
-	var idPrecedent = res[1];
-	var idSuivant = ev.target.id;
-	var estSurLaBonneDiv = false;
-    for (i=0; i < images.length ; i=i+2){
-    	if(images[i].id == idSuivant){
-    		// console.log(images[i].id + " " + idSuivant);
-    		estSurLaBonneDiv = true;
-    		var imageSupprimer = images[i];
-    		console.log(data.id);
-    		$("#imgg-"+images[i].id).replaceWith(document.getElementById(data.id));
-    	}
-    	if(estSurLaBonneDiv){
-    		if(images[i].id == idPrecedent){
-    			estSurLaBonneDiv = false;
-    		}else{
-				var pivot = images[i+2];
-				console.log(imageSupprimer);
-	    		$("#imgg-"+images[i+2].id).replaceWith(imageSupprimer);
-	    		imageSupprimer = pivot;
-    		}
+//     var i;
+// 	var idPrecedentZ = data;
+// 	var res = idPrecedentZ.split("-");
+// 	var idPrecedent = res[1];
+// 	var idSuivant = ev.target.id;
+// 	var estSurLaBonneDiv = false;
+//     for (i=0; i < images.length ; i=i+2){
+//     	if(images[i].id == idSuivant){
+//     		// console.log(images[i].id + " " + idSuivant);
+//     		estSurLaBonneDiv = true;
+//     		var imageSupprimer = images[i];
+//     		console.log(data.id);
+//     		$("#imgg-"+images[i].id).replaceWith(document.getElementById(data.id));
+//     	}
+//     	if(estSurLaBonneDiv){
+//     		if(images[i].id == idPrecedent){
+//     			estSurLaBonneDiv = false;
+//     		}else{
+// 				var pivot = images[i+2];
+// 				console.log(imageSupprimer);
+// 	    		$("#imgg-"+images[i+2].id).replaceWith(imageSupprimer);
+// 	    		imageSupprimer = pivot;
+//     		}
     		
-    	}
-    }
+//     	}
+//     }
         
-}
-
-
-
+// }

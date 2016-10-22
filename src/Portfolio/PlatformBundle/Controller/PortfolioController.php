@@ -6,6 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 use Portfolio\PlatformBundle\Entity\portfolio;
 use Portfolio\PlatformBundle\Entity\categorie;
@@ -24,7 +32,7 @@ class PortfolioController extends Controller
 
         // Envoi des données à la vue
         return $this->render('PortfolioPlatformBundle:Portfolio:index.html.twig', 
-        	array("categories" =>$categories,"images"=>$images));
+        	array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getValeur()));
     }
     public function modificationAction()
     {
@@ -47,6 +55,7 @@ class PortfolioController extends Controller
 	 		$em = $this->getDoctrine()->getManager();
         	$em->persist($categorie[0]);
  		}
+        $em = $this->getDoctrine()->getManager();
  		if($newCategories != null){
 	        $newcategorie = new categorie();
 	        $newcategorie->setValeur($newCategories);
@@ -60,6 +69,80 @@ class PortfolioController extends Controller
         }
         return $this->affichageAction();
     }
+    public function affichageParCategorieAction(Request $request){
 
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $categories = $repositoryCategorie->findAll();
+
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:portfolio');
+       
+        $categorie = $request->request->get("lienCategoriePortfolio");
+        $qb = $repositoryCategorie->createQueryBuilder('p')
+        ->join('p.categorie', 'cate')
+        ->where('cate.valeur = :valeurCate' )
+        ->andWhere('p.categorie = cate.id')
+        ->setParameter('valeurCate', $categorie)
+        ->addSelect('cate')
+        ;
+
+        $resultatRequete = $qb
+        ->getQuery()
+        ->getResult()
+        ;
+
+        // // Envoi des données à la vue
+        return $this->render('PortfolioPlatformBundle:Portfolio:index.html.twig', 
+            array("categories" =>$categories,"images"=>$resultatRequete, "categorieSingle" => $categorie));
+    }
+    public function ajoutImageParCategorieAction(Request $request)
+    {
+        // récupération de la requête 
+        $semiPath = "/FLP/Symfony/web/bundles/Portfolio/upload";
+
+        $images = $request->files->all();
+        $idCategorie = $images["idCategorie"]->getClientOriginalName();
+        $idCategorieInt = intval($idCategorie);
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $categorie = $repositoryCategorie->findOneBy(array("id" => $idCategorieInt));
+
+        $path = $this->get('kernel')->getRootDir() . '/../web/bundles/Portfolio/upload';
+        $i = 0;
+        foreach($images as $image){
+            $filename = $image->getClientOriginalName();
+            if($filename != $idCategorie){
+                // Ajout de la photo dans le serveur
+                $filename = $image->getClientOriginalName();
+                $image->move($path,$filename);
+                $urlImage = $semiPath . "/" . $filename;
+
+                // Ajout de l'url dans le tableau ( pour le retourner )
+
+                $listeUrlImage["urlImage"][$i] = $urlImage;
+                $i++;
+
+                // Ajout du lien en BDD
+                $portfolio = new portfolio();
+                $portfolio->setUrlImage($urlImage);
+                // var_dump($categorie);
+                $portfolio->setCategorie($categorie);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($portfolio);
+                
+                try{
+                    $em->flush();
+                }catch(Exception $e){
+                    return new Response($e);
+                }
+                $listeUrlImage["id"][$i] = $portfolio->getId();
+            }
+        }
+       
+        $response = new JsonResponse();
+        $response->setData($listeUrlImage);
+        return $response;
+    }
+    public function suppressionImageParCategorie(Request $request){
+        
+    }
 }
 

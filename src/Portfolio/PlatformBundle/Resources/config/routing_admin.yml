@@ -7,3 +7,12 @@ portfolio_platform_modification:
 portfolio_platform_modificationCategorie:
     path:     /portfolio/modification/categorie
     defaults: { _controller: PortfolioPlatformBundle:Portfolio:modificationCategorie }
+portfolio_platform_affichageImageParCategorie:
+    path:     /portfolio/affichage/image
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:affichageParCategorie}
+portfolio_platform_ajoutImageParCategorie:
+    path:     /portfolio/ajout/image
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:ajoutImageParCategorie }
+portfolio_platform_suppressionImageParCategorie:
+    path:     /portfolio/suppression/image
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:modificationCategorie }

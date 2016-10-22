@@ -1,7 +1,10 @@
 .conteneur{
 	width : 78%;
 	margin : auto;
-
+	text-align : center;
+}
+.titreAccueil{
+	text-align: left;
 }
 .conteneurBouton{
 	margin-top : 15px;
@@ -13,7 +16,6 @@
 }
 
 .conteneurImage{
-	text-align : left;
 	display: inline-block;
 }
 .conteneurUneImage{
@@ -24,6 +26,7 @@
 	cursor: pointer;
 	margin-top : 25px;
 	vertical-align: top;
+	margin-right : 20px;
 }
 
 .imageAccueil{
@@ -48,11 +51,5 @@
 	color : red;
 }
 
-.separateurImage{
-	width : 40px;
-	height : 150px;
-	display: inline-block;
-
-}
 
 
