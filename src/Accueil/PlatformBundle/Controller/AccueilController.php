@@ -95,4 +95,11 @@ class AccueilController extends Controller
         $em->flush();
         return  new Response("ok");
     }
+
+    public function frontAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+    }
 }

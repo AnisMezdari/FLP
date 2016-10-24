@@ -198,14 +198,14 @@ LIEN vers dautre route :
 
 ------------------------------------------------------------BDDDBDD-------------------------------------------------
 
-php bin/console doctrine:generate:entity    // générer une entité
+    // générer une entité
 
 	1) NomPlatformBundle:nom    // obligatoire sous ce format
 
 	2) entree
 
 	3) taper les attribut de la bdd
-	
+
 
 
 // 				UPDATE DE LA BDD

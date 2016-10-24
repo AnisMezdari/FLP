@@ -1,0 +1,16 @@
+.conteneurImagesAccueilFront{
+	height:350px;
+	overflow: auto;
+	overflow-y:scroll;
+	overflow-x:hidden;
+
+}
+
+.imagesAccueilFront{
+	display : inline-block;
+	vertical-align : top;
+	width : 39%;
+	margin-right : 5%;
+	margin-top : 40px;
+	border : 1px solid white;
+}

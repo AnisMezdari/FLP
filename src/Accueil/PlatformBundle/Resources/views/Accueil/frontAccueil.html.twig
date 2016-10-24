@@ -1,0 +1,11 @@
+{% extends "::baseFront.html.twig" %}
+
+{% block body %}
+
+	<div class = "conteneurImagesAccueilFront">
+		{% for photo in photos %}
+			<img class = "imagesAccueilFront" src = "{{photo.urlImage}}" alt = "Photographie" />
+		{% endfor %}
+	</div>
+
+{% endblock %}

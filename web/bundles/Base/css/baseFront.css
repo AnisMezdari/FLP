@@ -1,0 +1,46 @@
+body{
+	background-color: black;
+	width : 95%;
+	color : white;
+	margin : auto;
+	text-align: center!important;
+	height : 100%;
+}
+
+.frontHeader{
+	text-align: left;
+}
+.imgFrontHeader{
+	width : 8%;
+	display : inline-block;
+	margin-right: 5px;
+}
+.frontHeader h4 {
+	font-style: italic;
+	display : inline-block;
+	font-size: 14px;
+}
+
+.conteneurfrontNav{
+	margin-top : -25px;
+	text-align: center;
+	margin-bottom : 50px;
+}
+.frontNav {	
+	display : inline-block;
+	vertical-align: top;
+	font-style: italic;
+	margin-right : 50px;
+	color : #959595;
+	cursor : pointer;
+}
+.frontNav:hover{
+	color : white;
+}
+.frontFooter{
+	text-align: center;
+	color: #959595;
+	font-size: 13px;
+	height : 40px;
+	margin-top : 30px;
+}

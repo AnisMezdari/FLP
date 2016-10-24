@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width-device-width, initial-scale-1.0">
+
+        <title>{% block title %} Fleur de Lys Photographie | {% endblock %}</title>
+
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('web/bundles/framework/images/logo_symfony.png') }}" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="path/to/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+
+        <link rel="stylesheet" href="{{asset('bundles/Base/css/baseFront.css')}}" />
+        <link rel="stylesheet" href="{{asset('bundles/Accueil/css/accueilFront.css')}}" />
+
+        {% block stylesheets %}{% endblock %} 
+    </head>
+    <body>
+
+    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+        {% block nav %} {% include '::navFront.html.twig' %} {% endblock %}
+        {% block body %}  {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+        <footer class = "frontFooter">
+             Copyright © 2017 Fleur de Lys Photography Tous droits Réservés.
+        </footer>
+    </body>
+
+</html>
