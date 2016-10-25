@@ -1,4 +1,6 @@
 .conteneurImagesAccueilFront{
+	margin-left: 15%;
+	width : 90%;
 	height:350px;
 	overflow: auto;
 	overflow-y:scroll;
@@ -6,11 +8,25 @@
 
 }
 
-.imagesAccueilFront{
-	display : inline-block;
-	vertical-align : top;
+.conteneurPremierDemi{
 	width : 39%;
-	margin-right : 5%;
-	margin-top : 40px;
-	border : 1px solid white;
+	display:inline-block;
+	margin-right: 2%;
+	vertical-align: top;
+}
+
+.conteneurDeuxiemDemi{
+	width : 39%;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.imagesAccueilFront{
+	cursor : pointer;
+	width : 100%;
+	margin-top : 20px;
+}
+
+.imagesAccueilFront:hover{
+	opacity: 0.5;
 }

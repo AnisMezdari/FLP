@@ -1,11 +1,17 @@
 {% extends "::baseFront.html.twig" %}
 
 {% block body %}
-
 	<div class = "conteneurImagesAccueilFront">
+		{% set i = 0 %}
+			<div class = "conteneurPremierDemi">
 		{% for photo in photos %}
-			<img class = "imagesAccueilFront" src = "{{photo.urlImage}}" alt = "Photographie" />
+			{% if i == (loop.length/2)|round %}
+				</div>
+				<div class = "conteneurDeuxiemDemi">
+			{% endif %}
+			<img class = " imagesAccueilFront" src = "{{photo.urlImage}}" alt = "Photographie" />
+			{% set i = i+1 %}
 		{% endfor %}
+		</div>
 	</div>
-
 {% endblock %}

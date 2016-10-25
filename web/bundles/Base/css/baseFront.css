@@ -3,18 +3,29 @@ body{
 	width : 95%;
 	color : white;
 	margin : auto;
-	text-align: center!important;
 	height : 100%;
 }
 
 .frontHeader{
 	text-align: left;
+
 }
 .imgFrontHeader{
 	width : 8%;
 	display : inline-block;
 	margin-right: 5px;
+	cursor : pointer;
 }
+.imgFrontHeader:hover{
+	opacity : 0.5;
+}
+.titreSite{
+	cursor : pointer;
+}
+.titreSite:hover {
+	opacity : 0.5;
+}
+
 .frontHeader h4 {
 	font-style: italic;
 	display : inline-block;
@@ -25,6 +36,7 @@ body{
 	margin-top : -25px;
 	text-align: center;
 	margin-bottom : 50px;
+	margin-left : 11%;
 }
 .frontNav {	
 	display : inline-block;
