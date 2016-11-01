@@ -1,0 +1,9 @@
+tarif_platform_affichage:
+    path:     /tarif/affichage
+    defaults: { _controller: TarifPlatformBundle:Tarif:affichage }
+tarif_platform_modification:
+    path:     /tarif/modification
+    defaults: { _controller: TarifPlatformBundle:Tarif:modification }
+tarif_platform_ajout:
+    path:     /tarif/ajout
+    defaults: { _controller: TarifPlatformBundle:Tarif:ajout }

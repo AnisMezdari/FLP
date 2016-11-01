@@ -1,0 +1,3 @@
+evenement_platform_homepage:
+    path:     /evenement/affichage
+    defaults: { _controller: EvenementPlatformBundle:Evenemnt:affichage }

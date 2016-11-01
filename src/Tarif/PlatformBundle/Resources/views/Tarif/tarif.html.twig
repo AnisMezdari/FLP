@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+	<div   class = "conteneurTarif" >
+		<h1 class = "titreTarif"> Tarif </h1>
+
+		<form  action = "{{ path('tarif_platform_ajout') }}" method = "post" class = "conteneurTarif" >
+			<input type = "submit" name = "boutonAjoutTarif" value = "Ajouter" />
+		</form>
+
+		<div class = "conteneurBoutonTarif" >
+			<div class = "conteneurFormulairesTarif">
+				{% for tarif in tarifs %}
+					<form action = "{{ path('tarif_platform_modification') }}" method = "post" class = "conteneurFormulaireTarif" enctype="multipart/form-data">
+						
+						<div class = "conteneurImageTarif">
+							<img src  = "{{tarif.urlImage}}" alt = "image"  name = "imageTarif"  class = "imageTarif"/>
+							<input type = "file" name = "inputFileTarif"  />
+						</div>
+						<div class = "conteneurTextTarif">
+							<input type = "text" value = "{{tarif.texte}}" name = "textTarif"  class = "form-control textTarif" />
+						</div> 
+						<div class = "conteneurPrixTarif">
+							<input type = "text" value = "{{tarif.prix}}" name = "prixTarif" class = "form-control prixTarif" />
+						</div>
+						<div class = "conteneurBoutonModifTarif">
+							<input type = "submit" name = "boutonModifTarif" value = "Modifier" class = "boutonModifTarif" />
+						</div>
+						<input type = "hidden" value = "{{tarif.id}}" name = "idTarif" />
+		 			</form>
+			    {% endfor %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

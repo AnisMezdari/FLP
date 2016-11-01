@@ -1,0 +1,52 @@
+.conteneurTarif {
+	margin : auto;
+	width : 79%;
+	text-align: center;
+}
+
+.titreTarif{
+	margin-bottom : 25px;
+	text-align: left;
+}
+
+.conteneurboutonTarif{
+	margin-bottom : 40px;
+}
+
+.conteneurFormulairesTarif{
+
+
+}
+
+.conteneurFormulaireTarif{
+	border-bottom : 1px solid black;
+	margin-bottom : 15px;
+	padding : 10px;
+}
+.conteneurImageTarif{
+	display: inline-block;
+	width: 30%;
+	vertical-align: middle;
+}
+.conteneurTextTarif{
+	display : inline-block;
+	width: 25%;
+	vertical-align: middle;
+	
+}
+.conteneurPrixTarif{
+	display: inline-block;
+	width: 25%;
+	vertical-align: middle;
+}
+
+.imageTarif{
+	width : 120px;
+	height: 110px;
+	margin-bottom : 10px;
+}
+
+.conteneurBoutonModifTarif{
+	display :inline-block;
+
+}

@@ -28,6 +28,7 @@ class ContactController extends Controller
     	$adresse = $request->request->get('adresse');
     	$email = $request->request->get('email');
     	$tel = $request->request->get('tel');
+        $telFixe  = $request->request->get('telFixe');
     	$image = $request->request->get('image');
     	$images = $request->files->all();
 
@@ -38,6 +39,7 @@ class ContactController extends Controller
         $contact->setAdresse($adresse);
         $contact->setEmail($email);
         $contact->setTelephone($tel);
+        $contact->setTelephoneFixe($telFixe);
 
         if($images["image"] != NULL ){
 			$image = $this->uploadImage($image, $request);

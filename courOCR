@@ -198,7 +198,7 @@ LIEN vers dautre route :
 
 ------------------------------------------------------------BDDDBDD-------------------------------------------------
 
-    // générer une entité
+    php bin/console doctrine:generate:entity  // générer une entité
 
 	1) NomPlatformBundle:nom    // obligatoire sous ce format
 
@@ -231,4 +231,42 @@ entree
 
 yml
 
+
+
+
+--------------------------------------------------------Code---------------------------------------------------------
+
+
+ ------SELECT Première ligne------
+
+ $repository = $this->getDoctrine()->getRepository('ControllerPlatformBundle:modele');
+ $modele = $repository->find(1);
+// Envoi des données à la vue
+return $this->render('ControllerPlatformBundle:Controller:vue.html.twig',array("modele" =>$modele ));
+ 
+------ SELECT Par ID -------
+$repository = $this->getDoctrine()->getRepository('ControllerPlatformBundle:modele');
+$modele = $repository->findOneBy(array("id" => $idModele));
+
+
+--------- Récupérer les post de la requete -----
+POST -> $request->request->get('tag')
+
+
+
+------- LIENS ------
+
+lien direct pour img : {{asset('bundles/Accueil/image/logoFLS.gif')}}
+lien normal : {{ path('presentation_platform_affichage') }}
+
+
+----- INCLUDE -----
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use "Controller"\PlatformBundle\Entity\"modele";
+
+
+----- FORM -----
+enctype="multipart/form-data"
 

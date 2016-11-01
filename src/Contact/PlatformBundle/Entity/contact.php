@@ -42,6 +42,14 @@ class contact
      */
     private $telephone;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephoneFixe", type="string", length=255)
+     */
+    private $telephoneFixe;
+
     /**
      * @var string
      *
@@ -56,6 +64,8 @@ class contact
      * @ORM\Column(name="urlImage", type="string", length=255)
      */
     private $urlImage;
+
+
 
 
     /**
@@ -186,6 +196,30 @@ class contact
     public function getUrlImage()
     {
         return $this->urlImage;
+    }
+
+    /**
+     * Set telephoneFixe
+     *
+     * @param string $telephoneFixe
+     *
+     * @return contact
+     */
+    public function setTelephoneFixe($telephoneFixe)
+    {
+        $this->telephoneFixe = $telephoneFixe;
+
+        return $this;
+    }
+
+    /**
+     * Get telephoneFixe
+     *
+     * @return string
+     */
+    public function getTelephoneFixe()
+    {
+        return $this->telephoneFixe;
     }
 }
 

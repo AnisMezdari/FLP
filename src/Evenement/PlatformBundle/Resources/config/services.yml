@@ -1,0 +1,4 @@
+services:
+#    evenement_platform.example:
+#        class: Evenement\PlatformBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
