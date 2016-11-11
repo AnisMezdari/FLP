@@ -1,5 +1,12 @@
 *************************************************************** Routeure ************************************************** 
 
+imen : s2griff.fr  
+stepanie martin photo
+laurent andré photographe
+bac stage studio
+grands photographie.fr
+
+
 
 on peut voir la liste des routes en cliquant sur la barre doutil -> router
 
@@ -232,12 +239,10 @@ entree
 yml
 
 
-
-
 --------------------------------------------------------Code---------------------------------------------------------
 
 
- ------SELECT Première ligne------
+ ------Controller affichage()------
 
  $repository = $this->getDoctrine()->getRepository('ControllerPlatformBundle:modele');
  $modele = $repository->find(1);
@@ -270,3 +275,23 @@ use "Controller"\PlatformBundle\Entity\"modele";
 ----- FORM -----
 enctype="multipart/form-data"
 
+
+----- HTML DE BASE-----
+{% extends "::base.html.twig" %}
+{% block body %}
+  <div class = "conteneur">
+  	<h1 class = "titre("Controller")>("Controller")</h1>
+  </div>
+{% endblock %}
+
+
+---- CSS DE BASE ----
+
+.conteneur{
+	width : 78%;
+	margin : auto;
+	text-align : center;
+}
+.titre"Controller"{
+	text-align: left;
+}
