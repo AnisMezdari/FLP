@@ -1,33 +1,42 @@
-evenement_platform:
-    resource: "@EvenementPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
-tarif_platform:
-    resource: "@TarifPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
-portfolio_platform:
-    resource: "@PortfolioPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
-contact_platform:
-    resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
-presentation_platform:
-    resource: "@PresentationPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
-
-accueil_platform_admin:
-    resource: "@AccueilPlatformBundle/Resources/config/routing_admin.yml"
-    prefix:   /administrateur
-
+# Acceuil
 accueil_platform:
     resource: "@AccueilPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
+accueil_platform_admin:
+    resource: "@AccueilPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur/accueil
 
+# Présentation
+presentation_platform:
+    resource: "@PresentationPlatformBundle/Resources/config/routing.yml"
+    prefix:   /presentation
+
+presentation_platform_admin:
+    resource: "@PresentationPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur/presentation
+
+# Contact
+contact_platform_admin:
+    resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
+# Portfolio
+portfolio_platform_admin:
+    resource: "@PortfolioPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
+# Tarifs
+tarif_platform_admin:
+    resource: "@TarifPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
+# Événements
+evenement_platform_admin:
+    resource: "@EvenementPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
+# Utilisateurs
 user_platform:
     resource: "@UserPlatformBundle/Resources/config/routing.yml"
     prefix:   /user

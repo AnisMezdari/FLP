@@ -30,6 +30,14 @@ class AccueilController extends Controller
     	return  $this->render('AccueilPlatformBundle:Accueil:index.html.twig', array("photos" => $photos));
 
     }
+
+    public function frontAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+    }
+    
    /**
     *
     * Ajout de plusieurs photos en même temps en BDD 
@@ -41,7 +49,7 @@ class AccueilController extends Controller
     public function ajout_photoAction(Request $request)
     {
         // récupération de la requête 
-        $semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
+        $semiPath = "/Symfony/web/bundles/Accueil/upload";
     	$images = $request->files->all();
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
         $i = 0;
@@ -94,12 +102,5 @@ class AccueilController extends Controller
         $em->remove($accueil);
         $em->flush();
         return  new Response("ok");
-    }
-
-    public function frontAction(Request $request)
-    {
-        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
-        $photos = $repository->findAll();
-        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
     }
 }
