@@ -62,5 +62,7 @@ class categorie
     {
         return $this->valeur;
     }
+
+
 }
 

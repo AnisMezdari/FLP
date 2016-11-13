@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+  <div class = "conteneur">
+  	<h1 class = "titreEvenement">Evenement / Article </h1>
+
+	<div class = "conteneurBoutonEvenement">
+		<input type="submit" name="bouton" id = "boutonUploadEvenement" alue="Modifier" class="boutonEvenement"/>
+	</div>
+
+  	<div class = "conteneurInputTitreEvenement">
+  		<input type = "text"  value = "{{evenements[0].titre}}" name = "nameTitreEvenement"  class = "form-control inputTitreEvenement"/>
+  	</div>
+
+  	<div class = "conteneurTexteEvenement">
+
+<textarea class ="form-control inputTexteEvenement" name = "nameTexteEvenement"  id="exampleTextarea" >
+{{evenements[0].texte}}
+</textarea>
+
+  	</div>
+
+    <input name="filesToUpload[]" id="filesToUploadEvenement" type="file" multiple="" />
+    <input type="hidden" value="{{ path('accueil_platform_ajout_photo') }}" id =  "lienAjoutPhotoEvenement" />
+    <input type="hidden" id="lienSuppressionPhotonu2Evenement" value="{{ path('accueil_platform_suppression_photo') }}" />
+
+    {% set i = 0 %}
+  	<div class = "conteneurImagesEvenement">
+      {% for evenement in evenements %}
+        {% if i != 0 %}
+          {% if evenement != NULL %}
+      		<div class = "conteneurImageEvenement">
+      			<img src = "{{evenement.urlImage}}" alt = "photo événement" class  = "imageEvenement" />
+    		  	<span  id= "conar" class="glyphicon glyphicon-remove fa-lg croixSuppression" > </span>
+      		</div>
+          {% endif %}
+        {% endif %}
+        {% set i = i+1 %}
+      {% endfor %}
+  	</div>
+
+  </div>
+
+{% endblock %}

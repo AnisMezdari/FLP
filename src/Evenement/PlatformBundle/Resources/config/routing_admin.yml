@@ -1,3 +1,6 @@
-evenement_platform_homepage:
+evenement_platform_affichage:
     path:     /evenement/affichage
-    defaults: { _controller: EvenementPlatformBundle:Evenemnt:affichage }
+    defaults: { _controller: EvenementPlatformBundle:Evenement:affichage }
+evenement_platform_affichageArticle:
+    path:     /evenement/affichage/article
+    defaults: { _controller: EvenementPlatformBundle:Evenement:affichageArticle }

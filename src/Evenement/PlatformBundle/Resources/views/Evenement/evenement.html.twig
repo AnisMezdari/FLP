@@ -1,1 +1,16 @@
-Hello World!
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+  <div class = "conteneur">
+  	<h1 class = "titreEvenement">Evenement</h1>
+	{# boucle liste nom article #}
+	{% for evenement in evenements %}
+	  	<form action = "{{ path('evenement_platform_affichageArticle') }}"  method = "post" class = "list-group conteneurArticlesEvenemnt">
+		  	<input type = "submit" value = "{{evenement.titre}}" class="list-group-item articleEvement"/>
+		  	<input type = "hidden" value = "{{evenement.id}}" name = "idEvenement" />
+		</form>
+  	{% endfor %}
+  </div>
+
+{% endblock %}

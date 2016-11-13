@@ -3,7 +3,7 @@
 namespace Evenement\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Evenement\PlatformBundle\Entity\imageEvenement;
 /**
  * evenement
  *
@@ -31,7 +31,7 @@ class evenement
     /**
      * @var string
      *
-     * @ORM\Column(name="texte", type="string", length=255, nullable=true)
+     * @ORM\Column(name="texte", type="text", length=255, nullable=true)
      */
     private $texte;
 
@@ -93,5 +93,6 @@ class evenement
     {
         return $this->texte;
     }
+
 }
 

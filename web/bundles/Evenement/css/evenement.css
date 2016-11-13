@@ -1,0 +1,19 @@
+.conteneur{
+	width : 78%;
+	margin : auto;
+	text-align : center!important;
+}
+.titreEvenement{
+	text-align: left;
+}
+
+.conteneurArticlesEvenemnt{
+	margin-top : 40px;
+	text-align : center!important;
+	width : 100%;
+}
+
+.articleEvement {
+	display: inline-block!important;
+	width : 80%;
+}

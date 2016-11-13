@@ -30,6 +30,11 @@ class imageEvenement
 
 
     /**
+    * @ORM\ManyToOne(targetEntity="Evenement\PlatformBundle\Entity\evenement", cascade={"persist"})
+    */
+    public $evenement;
+
+    /**
      * Get id
      *
      * @return int
