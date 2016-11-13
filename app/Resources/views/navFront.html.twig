@@ -1,31 +1,35 @@
-<header class = "frontHeader">
-	<img class = "imgFrontHeader" src = "{{asset('bundles/Accueil/image/logoFLS.gif')}}" alt = "logoFlS" />
-	<h4 class  = "titreSite"> Fleur de Lys Photograhy </h4>
-</header>
+<div class="row navFixed">
+	<header class = "frontHeader col-sm-4">
+		<img class = "imgFrontHeader" src = "{{asset('bundles/Accueil/image/logoFLS.gif')}}" alt = "logoFlS" />
+		<h4 class  = "titreSite"> Fleur de Lys Photograhy </h4>
+	</header>
 
-<nav class = "conteneurfrontNav">
-	<div class = "frontNav">
-		Accueil
-	</div>
-	<div class = "frontNav">
-		Présentation
-	</div>
-	<div class = "frontNav">
-		Contact
-	</div>
-	<div class = "frontNav">
-		Portfolio
-	</div>
-	<div class = "frontNav">
-		Tarif
-	</div>
-	<div class = "frontNav">
-		Evénement
-	</div>
-	<div class = "frontNav">
-		Utilisateurs
-	</div>
-</nav>
-
-
+	<nav class = "conteneurfrontNav col-sm-8">
+		<div class = "frontNav">
+			<a href="{{ path('accueil_platform_homepage') }}">
+	   			Accueil
+			</a>  
+		</div>
+		<div class = "frontNav">
+			<a href="{{ path('presentation_platform_homepage') }}">
+	   			Présentation
+			</a>
+		</div>
+		<div class = "frontNav">
+			Contact
+		</div>
+		<div class = "frontNav">
+			Portfolio
+		</div>
+		<div class = "frontNav">
+			Tarif
+		</div>
+		<div class = "frontNav">
+			Evénement
+		</div>
+		<div class = "frontNav">
+			Utilisateurs
+		</div>
+	</nav>
+</div>
 

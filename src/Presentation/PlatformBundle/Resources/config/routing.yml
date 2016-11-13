@@ -1,3 +1,3 @@
 presentation_platform_homepage:
     path:     /
-    defaults: { _controller: PresentationPlatformBundle:Presentation:index }
+    defaults: { _controller: PresentationPlatformBundle:Presentation:front }

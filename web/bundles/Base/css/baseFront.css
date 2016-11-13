@@ -1,27 +1,36 @@
 body{
 	background-color: black;
-	width : 95%;
 	color : white;
-	margin : auto;
-	height : 100%;
+}
+
+.navFixed{
+	position:fixed;
+	top:0;
+	width:100%;
+	padding:0px 50px;
+	background-color: #000;
+	z-index: 1000;
 }
 
 .frontHeader{
-	text-align: left;
-
+	
 }
+
 .imgFrontHeader{
-	width : 8%;
+	width : 100px;
 	display : inline-block;
 	margin-right: 5px;
 	cursor : pointer;
 }
+
 .imgFrontHeader:hover{
 	opacity : 0.5;
 }
+
 .titreSite{
 	cursor : pointer;
 }
+
 .titreSite:hover {
 	opacity : 0.5;
 }
@@ -33,11 +42,10 @@ body{
 }
 
 .conteneurfrontNav{
-	margin-top : -25px;
-	text-align: center;
-	margin-bottom : 50px;
-	margin-left : 11%;
+	text-align:right;
+	padding: 50px 0px;
 }
+
 .frontNav {	
 	display : inline-block;
 	vertical-align: top;
@@ -46,13 +54,36 @@ body{
 	color : #959595;
 	cursor : pointer;
 }
+
 .frontNav:hover{
 	color : white;
 }
+
+.frontNav a {
+	color : #959595;
+}
+
+a{
+	text-decoration: none !important;
+}
+
+.row{
+	margin: 0px;
+}
+
+.conteneur{
+	text-align: center;
+	margin: 125px 0px 150px 0px;
+}
+
 .frontFooter{
 	text-align: center;
 	color: #959595;
-	font-size: 13px;
-	height : 40px;
-	margin-top : 30px;
+	height: 100px;
+	padding-top: 40px;
+	font-size: 11px;
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
 }

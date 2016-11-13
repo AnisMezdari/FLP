@@ -1,17 +1,19 @@
-
-.conteneur{
+.conteneurAccueil{
 	width : 78%;
 	margin : auto;
 	text-align : center;
 }
+
 .titreAccueil{
 	text-align: left;
 }
+
 .conteneurBouton{
 	margin-top : 15px;
 	width: 100%;
 	text-align:center;
 }
+
 #filesToUpload{
 	margin-left : 37%;
 }
@@ -19,6 +21,7 @@
 .conteneurImage{
 	display: inline-block;
 }
+
 .conteneurUneImage{
 	position : relative;
 	width: 150px;
@@ -34,6 +37,7 @@
 	width: 150px;
 	height: 100px;
 }
+
 .conteneurUneImage:hover .imageAccueil {
 	opacity: 0.5;
 }
@@ -45,13 +49,14 @@
 	opacity :0;
 	color : white;
 }
+
 .conteneurUneImage:hover .croixSuppression {
 	opacity: 1;
 }
+
 .croixSuppression:hover{
 	color : red;
 }
-
 
 .footer{
 	background-color: #f8f8f8;

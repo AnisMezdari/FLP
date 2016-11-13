@@ -23,6 +23,12 @@ class PresentationController extends Controller
         // Envoi des données à la vue
         return $this->render('PresentationPlatformBundle:Presentation:index.html.twig',array("presentation" =>$presentation ));
     }
+    
+    public function frontAction(Request $request){
+        $repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
+        $presentation = $repository->find(1);
+        return $this->render('PresentationPlatformBundle:Presentation:frontPresentation.html.twig',array("presentation" =>$presentation ));
+    }
 
     /*
      * Modifie la bdd en fonction des valeurs envoyées par le formulaire
@@ -58,7 +64,7 @@ class PresentationController extends Controller
     public function uploadImage($image , $request)
     {
     	// initialisation du chemin pour l'image
-    	$semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
+    	$semiPath = "/Symfony/web/bundles/Accueil/upload";
     	// initialisation du chemin pour le serveur afin d'upload l'image dedans
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
     	// récupération de l'image 
