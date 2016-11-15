@@ -15,4 +15,4 @@ portfolio_platform_ajoutImageParCategorie:
     defaults: { _controller: PortfolioPlatformBundle:Portfolio:ajoutImageParCategorie }
 portfolio_platform_suppressionImageParCategorie:
     path:     /portfolio/suppression/image
-    defaults: { _controller: PortfolioPlatformBundle:Portfolio:modificationCategorie }
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:suppressionImageParCategorie }

@@ -6,11 +6,16 @@
   	<h1 class = "titreEvenement">Evenement</h1>
 	{# boucle liste nom article #}
 	{% for evenement in evenements %}
-	  	<form action = "{{ path('evenement_platform_affichageArticle') }}"  method = "post" class = "list-group conteneurArticlesEvenemnt">
+	  	<form action = "{{ path('evenement_platform_affichageArticle') }}"  method = "post" class = "list-group conteneurArticlesEvenemnt" id= "evenement-{{evenement.id}}">
 		  	<input type = "submit" value = "{{evenement.titre}}" class="list-group-item articleEvement"/>
 		  	<input type = "hidden" value = "{{evenement.id}}" name = "idEvenement" />
+		  	<span  id= "{{evenement.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionEvent" > </span>
+		  	<input type = "hidden" value = "{{path('evenement_platform_supression')}}" id = "lienSuppressionEvenement" />
 		</form>
   	{% endfor %}
+	<form action = "{{ path('evenement_platform_ajout') }}" method = "post" >
+		<input type = "submit" value = "Ajouter" class = "boutonAjouterEvenement" />
+	</form>
   </div>
 
 {% endblock %}

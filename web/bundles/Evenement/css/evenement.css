@@ -11,9 +11,26 @@
 	margin-top : 40px;
 	text-align : center!important;
 	width : 100%;
+	position : relative;
+	cursor: pointer;
+
 }
 
 .articleEvement {
 	display: inline-block!important;
 	width : 80%;
+}
+
+.croixSuppressionEvent{
+	font-size: 20px;
+	right: 0.1em;
+	opacity :0;
+	color : black;
+	cursor : pointer;
+}
+.conteneurArticlesEvenemnt:hover .croixSuppressionEvent {
+	opacity: 1;
+}
+.croixSuppressionEvent:hover{
+	color : red;
 }

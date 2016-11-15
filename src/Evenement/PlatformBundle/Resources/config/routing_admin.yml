@@ -1,6 +1,22 @@
 evenement_platform_affichage:
     path:     /evenement/affichage
     defaults: { _controller: EvenementPlatformBundle:Evenement:affichage }
+evenement_platform_ajout:
+    path:     /evenement/ajout
+    defaults: { _controller: EvenementPlatformBundle:Evenement:ajout }
+evenement_platform_supression:
+    path:     /evenement/suppression
+    defaults: { _controller: EvenementPlatformBundle:Evenement:suppression }
+
 evenement_platform_affichageArticle:
     path:     /evenement/affichage/article
     defaults: { _controller: EvenementPlatformBundle:Evenement:affichageArticle }
+evenement_platform_modificationArticle:
+    path:     /evenement/modification/article
+    defaults: { _controller: EvenementPlatformBundle:Evenement:modificationArticle }
+evenement_platform_ajoutArticle:
+    path:     /evenement/ajout/article
+    defaults: { _controller: EvenementPlatformBundle:Evenement:ajoutArticle }
+accueil_platform_suppression_photo:
+    path:     /evenement/suppression/article
+    defaults: { _controller: EvenementPlatformBundle:Evenement:suppressionArticle }

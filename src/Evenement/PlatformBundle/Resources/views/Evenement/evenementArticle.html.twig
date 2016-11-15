@@ -3,36 +3,41 @@
 {% block body %}
 
   <div class = "conteneur">
-  	<h1 class = "titreEvenement">Evenement / Article </h1>
 
-	<div class = "conteneurBoutonEvenement">
-		<input type="submit" name="bouton" id = "boutonUploadEvenement" alue="Modifier" class="boutonEvenement"/>
-	</div>
+    <form  action = "{{path('evenement_platform_modificationArticle')}}" method = "post">
+    	<h1 class = "titreEvenement">Evenement / Article </h1>
 
-  	<div class = "conteneurInputTitreEvenement">
-  		<input type = "text"  value = "{{evenements[0].titre}}" name = "nameTitreEvenement"  class = "form-control inputTitreEvenement"/>
-  	</div>
+    	<div class = "conteneurBoutonEvenement">
+    		<input type="submit" name="bouton" id = "boutonModificationEvenement" value="Modifier" class="boutonEvenement"/>
+    	</div>
 
-  	<div class = "conteneurTexteEvenement">
+    	<div class = "conteneurInputTitreEvenement">
+    		<input type = "text"  value = "{{evenements[0].titre}}" name = "nameTitreEvenement"  class = "form-control inputTitreEvenement"/>
+    	</div>
+      <input type = "hidden" value = "{{evenements[0].id}}" name = "idEvenement"  id = "idEvenemnt"/>
+    	<div class = "conteneurTexteEvenement">
 
 <textarea class ="form-control inputTexteEvenement" name = "nameTexteEvenement"  id="exampleTextarea" >
 {{evenements[0].texte}}
 </textarea>
 
-  	</div>
+  	 </div>
 
-    <input name="filesToUpload[]" id="filesToUploadEvenement" type="file" multiple="" />
-    <input type="hidden" value="{{ path('accueil_platform_ajout_photo') }}" id =  "lienAjoutPhotoEvenement" />
+    </form>
+
+    <input name="filesToUpload[]" class = "boutonFileEvenement" id="filesToUploadEvenement" type="file" multiple="" />
+    <input type="submit" value = "upload" name="boutonUploadEvenement" class ="boutonUploadEvenement" />
     <input type="hidden" id="lienSuppressionPhotonu2Evenement" value="{{ path('accueil_platform_suppression_photo') }}" />
+    <input type="hidden" value = "{{path('evenement_platform_ajoutArticle')}}" id = "lienAjoutPhotoEvenement" />
 
     {% set i = 0 %}
   	<div class = "conteneurImagesEvenement">
       {% for evenement in evenements %}
         {% if i != 0 %}
           {% if evenement != NULL %}
-      		<div class = "conteneurImageEvenement">
+      		<div class = "conteneurImageEvenement imgEvenement-{{evenement.id}}">
       			<img src = "{{evenement.urlImage}}" alt = "photo événement" class  = "imageEvenement" />
-    		  	<span  id= "conar" class="glyphicon glyphicon-remove fa-lg croixSuppression" > </span>
+    		  	<span  id= "{{evenement.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionEvenement" > </span>
       		</div>
           {% endif %}
         {% endif %}

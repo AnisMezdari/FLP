@@ -23,6 +23,12 @@
 	display: inline-block!important;
 	width : 70%!important;
 }
+.boutonFileEvenement{
+	margin-top : 50px;
+	display : initial!important;
+	margin-right : 20px;
+	margin-bottom : 30px;
+}
 .conteneurImagesEvenement{
 	margin-top : 30px;
 }
@@ -39,16 +45,16 @@
 	height : 100px;
 }
 
-.croixSuppression{
+.croixSuppressionEvenement{
 	position: absolute!important;
 	font-size: 20px;
 	right: 0.1em;
 	opacity :0;
 	color : white;
 }
-.conteneurImageEvenement:hover .croixSuppression {
+.conteneurImageEvenement:hover .croixSuppressionEvenement {
 	opacity: 1;
 }
-.croixSuppression:hover{
+.croixSuppressionEvenement:hover{
 	color : red;
 }

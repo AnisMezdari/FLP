@@ -28,9 +28,10 @@
 
 			<div class = "conteneurImagesPortfolio">
 				{% for image in images %} 
-					<div class = "conteneurImagePortfolio">
+					<div class = "conteneurImagePortfolio imgPortFolio-{{image.id}}">
 						<img src = "{{image.urlImage}}" alt = "Photo" class = "imagePortfolio" />
-						<span   class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" > </span>
+						<span   id = "{{image.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio " > </span>
+						<input type="hidden" id="lienSuppressionPhotoPortfolio" value="{{ path('portfolio_platform_suppressionImageParCategorie') }}" />
 					</div>
 				{% endfor %}
 			</div>

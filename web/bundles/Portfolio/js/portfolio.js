@@ -1,5 +1,4 @@
 $( ".boutonUploadPortfolio" ).click(function() {
-	console.log("bonjourrr");
 	var lien = $("#lienAjoutPhoto").val();
 	var idCategorieportfolio = $("#idCategoriePorfolio").val();
 	var data = new FormData();
@@ -38,23 +37,19 @@ $( ".boutonUploadPortfolio" ).click(function() {
 });
 
 
-$( ".croixSuppression" ).click(function() {
+$( ".croixSuppressionPortfolio" ).click(function() {
 	// console.log($(this).attr("id"));
 	var element = $(this).attr("id");
-
-	console.log("c passe");
-
-	var lien = $("#lienSuppressionPhoto").val();
+	var lien = $("#lienSuppressionPhotoPortfolio").val();
 	var idPhoto = element;
-	console.log(lien);
-	console.log(idPhoto);
 	jQuery.ajax({
 	    url: lien,
 	    data: JSON.stringify({"idPhoto": idPhoto}),
 	    contentType: "application/json",
 	    type: 'POST',
 	    success: function(data){
-	    	$("#img-" + idPhoto).remove();
+	    	console.log(data);
+	    	$(".imgPortFolio-" + idPhoto).remove();
 	    },
 	    error: function (data) {
         	console.log(data.responseText);
