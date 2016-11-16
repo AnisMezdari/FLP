@@ -29,7 +29,7 @@ class portfolio
     private $urlImage;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Portfolio\PlatformBundle\Entity\categorie", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Portfolio\PlatformBundle\Entity\categorie")
     */
     private $categorie;
 

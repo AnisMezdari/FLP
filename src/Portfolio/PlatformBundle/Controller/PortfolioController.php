@@ -154,11 +154,29 @@ class PortfolioController extends Controller
         $em->flush();
         return  new Response("ok");
     }
+    public function suppressionCategorieAction(Request $request){
+        $params = array();
+        $content = $request->getContent();
+        $params = json_decode($content ,true); 
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('PortfolioPlatformBundle:categorie')->find($params["idPortfolioCategorie"]);
+        $articles = $em->getRepository('PortfolioPlatformBundle:portfolio')->findBy(array("categorie" => $evenement ));
+
+        foreach($articles as $article){
+            $em->remove($article);
+            $em->flush();
+        }
+
+        $em->remove($evenement);
+        $em->flush();
+        return  new Response("ok");
+    }
 
     public function convertionLabelEnId($label){
         $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
         $categorie = $repositoryCategorie->findOneByValeur($label);  
         return $categorie;
     }
+
 }
 
