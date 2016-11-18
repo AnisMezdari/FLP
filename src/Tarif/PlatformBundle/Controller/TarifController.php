@@ -18,6 +18,14 @@ class TarifController extends Controller
         // Envoi des données à la vue
         return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
     }
+        public function affichageFrontAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarifs = $repository->findAll();
+
+        // Envoi des données à la vue
+        return $this->render('TarifPlatformBundle:Tarif:tarifFront.html.twig',array("tarifs" =>$tarifs));
+    }
 
     public function modificationAction(Request $request)
     {

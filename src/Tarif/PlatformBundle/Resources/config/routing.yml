@@ -1,0 +1,3 @@
+tarif_platform_homepage:
+    path:     /tarif
+    defaults: { _controller: TarifPlatformBundle:Tarif:affichageFront }

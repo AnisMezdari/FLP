@@ -1,0 +1,20 @@
+{% extends "::baseFront.html.twig" %}
+
+{% block body %}
+	{# <h4> Tarif</h4> #}
+	<div class = "conteneurTarifsFront">
+	{% for tarif in tarifs %}
+		<div class = "conteneurTarifFront">
+			<div class = "conteneurImageTarifFront">
+				<img src = "{{tarif.urlImage}}" alt = "Image anniversaire" class = "imageTarifFront"/>
+			</div>
+			<div class = "conteneurTexteTarifFront">
+				{{tarif.texte}}
+			</div>
+			<div class = "conteneurPrixTarifFront">
+				{{tarif.prix}}
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+{% endblock %}
