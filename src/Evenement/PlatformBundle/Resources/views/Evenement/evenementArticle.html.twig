@@ -27,7 +27,7 @@
 
     <input name="filesToUpload[]" class = "boutonFileEvenement" id="filesToUploadEvenement" type="file" multiple="" />
     <input type="submit" value = "upload" name="boutonUploadEvenement" class ="boutonUploadEvenement" />
-    <input type="hidden" id="lienSuppressionPhotonu2Evenement" value="{{ path('accueil_platform_suppression_photo') }}" />
+    <input type="hidden" id="lienSuppressionPhotonu2Evenement" value="{{ path('evenement_platform_suppression_photo') }}" />
     <input type="hidden" value = "{{path('evenement_platform_ajoutArticle')}}" id = "lienAjoutPhotoEvenement" />
 
     {% set i = 0 %}

@@ -1,22 +1,21 @@
 {% extends "::baseFront.html.twig" %}
 
 {% block body %}
-	<div class="row" style="padding:0px 100px;">
-		<div class="col-sm-4" style="text-align:right;margin-top:50px;">
-			<div class="row">
-				<img src = "{{ presentation.urlImage }}" alt = "Image de présentation" style="border-radius:20px;width:200px;"/>
-			</div>
+
+
+	<div class = "conteneurPresentationFront">
+		<h2 class = "conteneurTitrePresentationFront">
+			{{presentation.titre}}
+		</h2>
+
+		<div class = "conteneurTextePresentationFront">
+			{{presentation.texte}}
 		</div>
-		 <div class="col-sm-8" style="text-align:left;">
-  			<div class="row">
-  				<h2 style="margin:10px 0">
-					{{presentation.titre}}
-				</h2>
-			</div>
-			
-			<div class="row">
-				{{presentation.texte}}
-			</div>
+
+		<div class = "conteneurImagePresentationFront">
+			<img src =  "{{presentation.urlImage}}" alt = "Image de présentation" class = "imagePresentationFront" />
 		</div>
 	</div>
+
+
 {% endblock %}

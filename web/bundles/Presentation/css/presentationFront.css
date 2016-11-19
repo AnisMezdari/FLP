@@ -1,0 +1,36 @@
+.conteneurPresentationFront{
+	display : inline-block!important;
+	margin-top : 60px;
+	width : 85%;
+	background-color: white;
+}
+
+.conteneurTitrePresentationFront{
+	font-family : Arial, Helvetica, sans-serif;
+	font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+	color : #3E3E3E;
+	word-wrap: break-word;
+	letter-spacing: -0.06em;
+	font-style : italic;
+	font-size: 50px;
+	margin-bottom : 45px;
+}
+.conteneurTextePresentationFront{
+	width : 48%;
+	display : inline-block;
+	font: italic normal normal 18px/1.4em 'times new roman',times,serif;
+	color: #605E5E;
+	margin-right : 20px;
+	vertical-align: middle;
+}
+
+.conteneurImagePresentationFront{
+	width : 48%;
+	display : inline-block;
+	
+}
+
+.imagePresentationFront {
+	width : 100%;
+}
+

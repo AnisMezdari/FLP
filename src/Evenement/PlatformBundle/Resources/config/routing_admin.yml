@@ -17,6 +17,6 @@ evenement_platform_modificationArticle:
 evenement_platform_ajoutArticle:
     path:     /evenement/ajout/article
     defaults: { _controller: EvenementPlatformBundle:Evenement:ajoutArticle }
-accueil_platform_suppression_photo:
+evenement_platform_suppression_photo:
     path:     /evenement/suppression/article
     defaults: { _controller: EvenementPlatformBundle:Evenement:suppressionArticle }
