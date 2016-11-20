@@ -3,18 +3,42 @@
 {% block body %}
 	{# <h4> Tarif</h4> #}
 	<div class = "conteneurTarifsFront">
-	{% for tarif in tarifs %}
+{# 		<div class = "conteneurTextesTarfiFront">
+			{% for tarif in tarifs %}
+				<form action = "path('tarif_platform_homepage')" method = "post" class = "conteneurTexteTarifFront">
+					{{tarif.texte}}
+					<input type = "hidden" value = "{{tarif.id}}" name = "tarifId" />
+				</form>
+			{% endfor %}
+		</div> #}
 		<div class = "conteneurTarifFront">
+			<div class = "conteneurTexteDeuxTarifFront">
+				{{tarif.texte}}
+			</div>
+			{% if estPremier == false %}
+				<form  class = "conteneurFlecheDroite" id = "formTarif" action = "{{path('tarif_platform_suivant')}}" method = "post">
+					<span type = "submit" class="glyphicon glyphicon-chevron-left flecheDroite" aria-hidden="true" onclick="document.getElementById('formTarif').submit();"></span>
+					<input type = "hidden" value = "{{tarif.id}}" name = "tarifId" />
+					<input type = "hidden" value = "0" name = "tarifSuivant" />
+				</form>
+			{% endif %}
 			<div class = "conteneurImageTarifFront">
 				<img src = "{{tarif.urlImage}}" alt = "Image anniversaire" class = "imageTarifFront"/>
-			</div>
-			<div class = "conteneurTexteTarifFront">
-				{{tarif.texte}}
 			</div>
 			<div class = "conteneurPrixTarifFront">
 				{{tarif.prix}}
 			</div>
+			{% if estDernier == false %}
+				<form  class = "conteneurFlecheDroite" id = "formTarif2" action = "{{path('tarif_platform_suivant')}}" method = "post">
+					<span type = "submit" class="glyphicon glyphicon-chevron-right flecheDroite" aria-hidden="true" onclick="document.getElementById('formTarif2').submit();"></span>
+					<input type = "hidden" value = "{{tarif.id}}" name = "tarifId" />
+					<input type = "hidden" value = "1" name = "tarifSuivant" />
+				</form>
+			{% endif %}
 		</div>
-	{% endfor %}
+		
+		<div class = "conteneurLienTarif">
+			<a href = "path('')" class = "lienTarif">ME CONTACTER</a>
+		</div>
 	</div>
 {% endblock %}

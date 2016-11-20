@@ -34,6 +34,22 @@ class PortfolioController extends Controller
         return $this->render('PortfolioPlatformBundle:Portfolio:index.html.twig', 
         	array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
     }
+
+    public function affichageFrontAction()
+    {   
+        // Récupération des données de la table Accueil
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $categories = $repositoryCategorie->findAll();
+
+        $categorie1 = $categories[0];
+        $repositoryPortfolio = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:portfolio');
+        // var_dump($categorie1->getId());
+        $images = $repositoryPortfolio->findBy(array("categorie" => $categorie1->getId()));
+
+        // Envoi des données à la vue
+        return $this->render('PortfolioPlatformBundle:Portfolio:portfolioFront.html.twig', 
+            array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
+    }
     public function modificationAction()
     {
     	$repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');

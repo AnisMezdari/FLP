@@ -1,18 +1,102 @@
 .conteneurTarifsFront{
+	display : inline-block!important;
 	margin : auto;
 	width : 85%;
 	text-align: center;
+	background-color: white;
+	margin-top : 60px; 
 }
 
+.conteneurTextesTarfiFront{
+	/*margin-top : 30px;*/
+}
 .conteneurTarifFront{
 	display : inline-block;
-	width : 30%;
-	margin-right : 2%;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
+	width : 100%;
 }
 
 .imageTarifFront{
 	/*width : 500px;*/
 	width : 100%;
-	margin-bottom: 15px;
+	/*margin-bottom: 15px;*/
+}
+.conteneurTexteTarifFront{
+	display : inline-block;
+	width : 150px;
+	text-align : center;
+	border-right : 1px solid black;
+	color : black;
+
+}
+
+.conteneurTexteDeuxTarifFront{
+	width: 100%;
+	font-family : Arial, Helvetica, sans-serif;
+	font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+	color : #3E3E3E;
+	word-wrap: break-word;
+	letter-spacing: -0.06em;
+	font-style : italic;
+	font-size: 50px;
+	margin-bottom : 15px;
+	margin-top : 15px;
+}
+
+.conteneurImageTarifFront{
+	display : inline-block;
+	width : 65%;
+}
+
+.conteneurPrixTarifFront{
+	display : inline-block;
+	width : 20%;
+	font-size : 50px!important;
+	color : #3E3E3E;
+	font: italic normal normal 18px/1.4em 'times new roman',times,serif;
+	margin-left : 30px;
+}
+
+.conteneurLienTarif{
+	margin-top : 25px;
+	font: normal normal normal 13px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif;
+	transition: color 0.4s ease 0s;
+	color: #FFFFFF;
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+	background-color: rgba(62, 62, 62, 1);
+	border: solid rgba(204, 204, 204, 1) 0px;
+	cursor: pointer !important;
+	width : 140px;
+	height : 40px;
+	color : white;
+	padding-top : 10px;
+	font-size : 12px;
+}
+
+.conteneurLienTarif:hover{
+	opacity : 0.5;
+}
+
+.lienTarif{
+	color : white;
+	text-decoration: none;
+}
+
+.lienTarif:hover{
+	color : white!important;
+}
+
+.conteneurFlecheDroite{
+	display : inline-block;
+}
+.flecheDroite{
+	cursor : pointer;
+	font-size: 40px;
+	
+}
+
+.conteneurFlecheDroite:hover{
+	opacity: 0.4;
 }

@@ -1,0 +1,3 @@
+portfolio_platform_homepage:
+    path:     /
+    defaults: { _controller: PortfolioPlatformBundle:Portfolio:affichageFront }
