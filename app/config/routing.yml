@@ -21,6 +21,10 @@ contact_platform_admin:
     resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur
 
+contact_platform:
+    resource: "@ContactPlatformBundle/Resources/config/routing.yml"
+    prefix:   /contact
+
 # Portfolio
 portfolio_platform_admin:
     resource: "@PortfolioPlatformBundle/Resources/config/routing_admin.yml"

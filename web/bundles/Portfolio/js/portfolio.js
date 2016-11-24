@@ -7,6 +7,7 @@ $( ".boutonUploadPortfolio" ).click(function() {
 	    data.append('file-'+i, file);
 	});
 	data.append('idCategorie' ,fileIdCate);
+	console.log(data);
 	jQuery.ajax({
 	    url: lien,
 	    data:  data,

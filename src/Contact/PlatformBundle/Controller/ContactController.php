@@ -20,6 +20,16 @@ class ContactController extends Controller
         return $this->render('ContactPlatformBundle:Contact:index.html.twig',array("contact" =>$contact));
     }
 
+    public function affichageFrontAction()
+    {
+         // Récupération des données de la table Accueil
+        $repository = $this->getDoctrine()->getRepository('ContactPlatformBundle:contact');
+        $contact = $repository->find(1);
+
+        // Envoi des données à la vue
+        return $this->render('ContactPlatformBundle:Contact:contactFront.html.twig',array("contact" =>$contact));
+    }
+
     public function modificationAction(Request $request)
     {
 

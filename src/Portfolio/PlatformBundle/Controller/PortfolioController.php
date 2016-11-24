@@ -35,13 +35,18 @@ class PortfolioController extends Controller
         	array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
     }
 
-    public function affichageFrontAction()
+    public function affichageFrontAction(Request $request)
     {   
         // Récupération des données de la table Accueil
         $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
         $categories = $repositoryCategorie->findAll();
 
-        $categorie1 = $categories[0];
+        $idCategorie = $request->request->get('idCategoriePortFolio');
+        if($idCategorie == null){
+            $categorie1 = $categories[0];
+        }else{
+            $categorie1 = $this->affichageParId($idCategorie);
+        }
         $repositoryPortfolio = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:portfolio');
         // var_dump($categorie1->getId());
         $images = $repositoryPortfolio->findBy(array("categorie" => $categorie1->getId()));
@@ -50,6 +55,15 @@ class PortfolioController extends Controller
         return $this->render('PortfolioPlatformBundle:Portfolio:portfolioFront.html.twig', 
             array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
     }
+
+    public function affichageParId($id){
+        $repository = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $tarif = $repository->find($id);
+
+        // Envoi des données à la vue
+        return $tarif;
+    }
+
     public function modificationAction()
     {
     	$repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
