@@ -32,8 +32,38 @@ class PortfolioController extends Controller
 
         // Envoi des données à la vue
         return $this->render('PortfolioPlatformBundle:Portfolio:index.html.twig', 
-        	array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getValeur()));
+        	array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
     }
+
+    public function affichageFrontAction(Request $request)
+    {   
+        // Récupération des données de la table Accueil
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $categories = $repositoryCategorie->findAll();
+
+        $idCategorie = $request->request->get('idCategoriePortFolio');
+        if($idCategorie == null){
+            $categorie1 = $categories[0];
+        }else{
+            $categorie1 = $this->affichageParId($idCategorie);
+        }
+        $repositoryPortfolio = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:portfolio');
+        // var_dump($categorie1->getId());
+        $images = $repositoryPortfolio->findBy(array("categorie" => $categorie1->getId()));
+
+        // Envoi des données à la vue
+        return $this->render('PortfolioPlatformBundle:Portfolio:portfolioFront.html.twig', 
+            array("categories" =>$categories,"images"=>$images, "categorieSingle" => $categorie1->getId()));
+    }
+
+    public function affichageParId($id){
+        $repository = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $tarif = $repository->find($id);
+
+        // Envoi des données à la vue
+        return $tarif;
+    }
+
     public function modificationAction()
     {
     	$repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
@@ -77,11 +107,12 @@ class PortfolioController extends Controller
         $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:portfolio');
        
         $categorie = $request->request->get("lienCategoriePortfolio");
+        $categorie = $this->convertionLabelEnId($categorie);
         $qb = $repositoryCategorie->createQueryBuilder('p')
         ->join('p.categorie', 'cate')
         ->where('cate.valeur = :valeurCate' )
         ->andWhere('p.categorie = cate.id')
-        ->setParameter('valeurCate', $categorie)
+        ->setParameter('valeurCate', $categorie->getValeur())
         ->addSelect('cate')
         ;
 
@@ -92,7 +123,7 @@ class PortfolioController extends Controller
 
         // // Envoi des données à la vue
         return $this->render('PortfolioPlatformBundle:Portfolio:index.html.twig', 
-            array("categories" =>$categories,"images"=>$resultatRequete, "categorieSingle" => $categorie));
+            array("categories" =>$categories,"images"=>$resultatRequete, "categorieSingle" => $categorie->getId()));
     }
     public function ajoutImageParCategorieAction(Request $request)
     {
@@ -141,8 +172,41 @@ class PortfolioController extends Controller
         $response->setData($listeUrlImage);
         return $response;
     }
-    public function suppressionImageParCategorie(Request $request){
-        
+
+    public function suppressionImageParCategorieAction(Request $request){
+        $params = array();
+        $content = $request->getContent();
+        $params = json_decode($content ,true); 
+        $em = $this->getDoctrine()->getManager();
+        $portfolio = $em->getRepository('PortfolioPlatformBundle:portfolio')->find($params["idPhoto"]);
+        // var_dump($portfolio);
+        $em->remove($portfolio);
+        $em->flush();
+        return  new Response("ok");
     }
+    public function suppressionCategorieAction(Request $request){
+        $params = array();
+        $content = $request->getContent();
+        $params = json_decode($content ,true); 
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('PortfolioPlatformBundle:categorie')->find($params["idPortfolioCategorie"]);
+        $articles = $em->getRepository('PortfolioPlatformBundle:portfolio')->findBy(array("categorie" => $evenement ));
+
+        foreach($articles as $article){
+            $em->remove($article);
+            $em->flush();
+        }
+
+        $em->remove($evenement);
+        $em->flush();
+        return  new Response("ok");
+    }
+
+    public function convertionLabelEnId($label){
+        $repositoryCategorie = $this->getDoctrine()->getRepository('PortfolioPlatformBundle:categorie');
+        $categorie = $repositoryCategorie->findOneByValeur($label);  
+        return $categorie;
+    }
+
 }
 

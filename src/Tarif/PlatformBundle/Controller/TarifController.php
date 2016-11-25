@@ -19,6 +19,63 @@ class TarifController extends Controller
         return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
     }
 
+    public function affichageFrontAction(Request $request)
+    {
+
+        $tarif = $this->getPremierTarif();
+        $tarif = $tarif[0];
+        $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarifs = $repository->findAll();
+        $estPremier = true;
+        $estDernier = false;
+        // Envoi des données à la vue
+        return $this->render('TarifPlatformBundle:Tarif:tarifFront.html.twig',array("tarifs" =>$tarifs , "tarif" => $tarif, "estPremier" => $estPremier , "estDernier" => $estDernier));
+    }
+
+    public function affichageFrontSuivantAction(Request $request)
+    {
+        $idTarif = $request->request->get('tarifId');
+        $suivant = $request->request->get('tarifSuivant');
+        $tarifs = $this->getPremierTarif();
+        $tarifRetourne = null;
+        $estDernier = false;
+        $estPremier = false;
+        for($i = 0; $i < sizeof($tarifs) ; $i++){
+            if($tarifs[$i]->getId() == $idTarif){
+                if($suivant == 1){
+                    $tarifRetourne = $tarifs[$i+1];
+                    if($i == sizeof($tarifs)-2){
+                        $estDernier = true;
+                    }
+                }else{
+                    $tarifRetourne = $tarifs[$i-1];
+                    if($i == 0){
+                        $estPremier = true;
+                    }
+                } 
+            }
+        }
+        $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarifs = $repository->findAll();
+
+        // Envoi des données à la vue
+        return $this->render('TarifPlatformBundle:Tarif:tarifFront.html.twig',array("tarifs" =>$tarifs , "tarif" => $tarifRetourne, "estPremier" => $estPremier , "estDernier" => $estDernier));
+    }
+
+    public function affichageParId($id){
+        $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarif = $repository->find($id);
+
+        // Envoi des données à la vue
+        return $tarif;
+    }
+    public function getPremierTarif(){
+        $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarif = $repository->findBy(array(), array('id' => 'asc'));
+
+        return $tarif;
+    }
+
     public function modificationAction(Request $request)
     {
     	$idTarif = $request->request->get('idTarif');

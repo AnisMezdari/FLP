@@ -21,15 +21,27 @@ contact_platform_admin:
     resource: "@ContactPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur
 
+contact_platform:
+    resource: "@ContactPlatformBundle/Resources/config/routing.yml"
+    prefix:   /contact
+
 # Portfolio
 portfolio_platform_admin:
     resource: "@PortfolioPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur
+portfolio_platform:
+    resource: "@PortfolioPlatformBundle/Resources/config/routing.yml"
+    prefix:   /portfolio
 
 # Tarifs
 tarif_platform_admin:
     resource: "@TarifPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur
+
+tarif_platform:
+    resource: "@TarifPlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 # Événements
 evenement_platform_admin:

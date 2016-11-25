@@ -64,7 +64,8 @@ class PresentationController extends Controller
     public function uploadImage($image , $request)
     {
     	// initialisation du chemin pour l'image
-    	$semiPath = "/Symfony/web/bundles/Accueil/upload";
+    	// $semiPath = "/Symfony/web/bundles/Accueil/upload";
+        $semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
     	// initialisation du chemin pour le serveur afin d'upload l'image dedans
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
     	// récupération de l'image 

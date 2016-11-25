@@ -1,0 +1,33 @@
+{% extends "::baseFront.html.twig" %}
+{% block body %}
+
+	<div class = "conteneurPortfolioFront">
+
+
+		<div class = "conteneursSemiNav">
+			{% set j = 0 %}
+			{% for categorie in categories %}
+				<form id = "formPortFolio{{j}}" action = "{{path('portfolio_platform_homepage')}}" method = "post" >
+					<div class = "semiNavPortfolio" style = "margin-top : {{j}}px;" onclick="document.getElementById('formPortFolio{{j}}').submit();">
+						{{categorie.valeur}}
+					</div>
+					<input type = "hidden" value= "{{categorie.id}}" name = "idCategoriePortFolio" />
+				</form>
+				{% set j = j+40%}
+			{% endfor %}
+		</div>
+
+		{% set i = 0 %}
+			<div class = "conteneurPremierDemiPortfolio">
+		{% for image in images %}
+			{% if i == (loop.length/2)|round %}
+				</div>
+				<div class = "conteneurDeuxiemDemiPortfolio">
+			{% endif %}
+			<img class = "imagePortfolioFront" src = "{{image.urlImage}}" alt = "image du portfolio" />
+			{% set i = i+1 %}
+		{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}

@@ -37,7 +37,7 @@ $( "#boutonUpload" ).click(function() {
 
 
 $( ".croixSuppression" ).click(function() {
-	// console.log($(this).attr("id"));
+	console.log($(this).attr("id"));
 	var element = $(this).attr("id");
 
 	console.log("c passe");

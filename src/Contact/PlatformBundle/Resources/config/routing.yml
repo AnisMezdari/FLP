@@ -1,0 +1,3 @@
+contact_platform_affichage_front:
+    path:     /
+    defaults: { _controller: ContactPlatformBundle:Contact:affichageFront }

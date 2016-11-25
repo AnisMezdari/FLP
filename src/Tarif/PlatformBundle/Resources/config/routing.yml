@@ -1,0 +1,6 @@
+tarif_platform_homepage:
+    path:     /tarif
+    defaults: { _controller: TarifPlatformBundle:Tarif:affichageFront }
+tarif_platform_suivant:
+    path:     /tarif/suivant
+    defaults: { _controller: TarifPlatformBundle:Tarif:affichageFrontSuivant }

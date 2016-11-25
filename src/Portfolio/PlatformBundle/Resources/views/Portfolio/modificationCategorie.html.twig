@@ -11,9 +11,11 @@
 				<input type = "submit" name = "boutonMoficationCategorie" value = "Modifier"  />
 			</div>
 			{% for categorie in categories %}
-				<div class = "conteneurInputPortfolioModif">
+				<div class = "conteneurInputPortfolioModif" id= "portfolioCategorie-{{categorie.id}}" >
 					<input type = "text" name = "categorie{{loop.index}}" value = "{{categorie.valeur}}" class = "form-control inputPortfolioModif"/>
 					<input type = "hidden" name= "idCategorie{{loop.index}}" value = "{{categorie.id}}"/>
+					<span  id= "{{categorie.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolioCategorie" > </span>
+					<input type = "hidden" value = "{{path('portfolio_platform_supressionCategorie')}}" id = "lienSuppressionPortfolioCategorie" />
 				</div>
 				<input type = "hidden" name = "nombreCategorie" value = "{{loop.length}}"  />
 			{% endfor %}

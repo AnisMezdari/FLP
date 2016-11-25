@@ -30,7 +30,7 @@ class imageEvenement
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="Evenement\PlatformBundle\Entity\evenement", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Evenement\PlatformBundle\Entity\evenement")
     */
     public $evenement;
 
@@ -66,6 +66,19 @@ class imageEvenement
     public function getUrlImage()
     {
         return $this->urlImage;
+    }
+
+     /**
+     * Set evenement
+     *
+     * @param evenement $evenement
+     *
+     * @return evenement
+     */
+    public function setEvenement($evenement){
+        $this->evenement = $evenement;
+
+        return $this;
     }
 }
 

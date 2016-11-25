@@ -12,11 +12,30 @@
 	width: 50%;
 }
 
-.inputPortfolioModif{
-	margin-top : 25px;
-
-}
-
 #boutonAjouterCategoriePortfolio{
 	margin-top : 30px;
+}
+.conteneurInputPortfolioModif{
+	width : 100%;
+	position : relative;
+	cursor: pointer;
+}
+
+.inputPortfolioModif{
+	margin-top : 25px;
+	display: inline-block!important;
+	width : 85%!important;
+}
+.croixSuppressionPortfolioCategorie{
+	font-size: 20px;
+	right: 0.1em;
+	opacity :0;
+	color : black;
+	cursor : pointer;
+}
+.conteneurInputPortfolioModif:hover .croixSuppressionPortfolioCategorie {
+	opacity: 1;
+}
+.croixSuppressionPortfolioCategorie:hover{
+	color : red;
 }

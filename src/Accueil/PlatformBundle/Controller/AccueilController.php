@@ -49,7 +49,10 @@ class AccueilController extends Controller
     public function ajout_photoAction(Request $request)
     {
         // récupération de la requête 
-        $semiPath = "/Symfony/web/bundles/Accueil/upload";
+        // $semiPath = "/Symfony/web/bundles/Accueil/upload";
+
+        $semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
+
     	$images = $request->files->all();
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
         $i = 0;
@@ -99,6 +102,7 @@ class AccueilController extends Controller
         $params = json_decode($content ,true); 
         $em = $this->getDoctrine()->getManager();
         $accueil = $em->getRepository('AccueilPlatformBundle:Accueil')->find($params["idPhoto"]);
+        var_dump("accueil : ", $accueil);
         $em->remove($accueil);
         $em->flush();
         return  new Response("ok");

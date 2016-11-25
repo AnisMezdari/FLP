@@ -1,0 +1,58 @@
+{% extends "::baseFront.html.twig" %}
+{% block body %}
+  <div class = "conteneurContactFront">
+
+  	<div class = "conteneurDonneeContactFront">
+	 	<div class = "conteneurImageContactFront">
+	  		<img src = "{{contact.urlImage}}" alt = "Image représentant Fleur de lys photography" class = "imageContactFront"/>
+	  	</div>
+	  	<div class = "donneesContactFront">
+		  	<div class = "donneeContactFront">
+		  		{{contact.titre}}
+		 	</div>
+		  	<div class = "donneeContactFront">
+		  		{{contact.adresse}}
+		  	</div>
+		  	<div class = "donneeContactFront">
+		  		{{contact.email}}
+		  	</div>
+		  	<div class = "donneeContactFront">
+		  		{{contact.telephone}}
+		 	</div>
+		 	<div class = "donneeContactFront">
+		  		{{contact.telephoneFixe}}
+		  	</div>
+	  </div>
+	</div>
+
+	<form action = "" method = "post" class = "conteneurFormulaireContactFront">
+
+		<div class = "conteneurPetitFormulaireContactFront">
+			<div class = "petitFormulaireContactFront">
+				<input type = "text" placeholder="Nom" name = "nom" class= "formulaireContactFront">
+			</div>
+			<div class = "petitFormulaireContactFront">
+				<input type = "text" placeholder="Email" name = "email" class= "formulaireContactFront">
+			</div>
+			<div class = "petitFormulaireContactFront">
+				<input type = "text" placeholder="Téléphone (optionnel)" name = "telephone" class= "formulaireContactFront">
+			</div>
+			<div class = "petitFormulaireContactFront">
+				<input type = "text" placeholder="Ville (optionnel)" name = "ville" class= "formulaireContactFront">
+			</div>
+		</div>
+
+		<div class = "conteneurGrandFormulaireContactFront">
+			<textarea placeholder="Message" class = "textareaContactFront"></textarea>
+		</div>
+
+		<div class = "conteneurBoutonEnvoi">
+			<div class = "boutonEnvoiContactFront">
+				ENVOYER
+			</div>
+		</div>
+	</form>
+
+
+  </div>
+{% endblock %}
