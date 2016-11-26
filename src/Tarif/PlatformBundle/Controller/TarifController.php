@@ -135,4 +135,17 @@ class TarifController extends Controller
 
         return $urlImage;
     }
+
+    public function suppressionAction(Request $request){
+
+        $params = array();
+        $content = $request->getContent();
+        $params = json_decode($content ,true); 
+        $em = $this->getDoctrine()->getManager();
+        $accueil = $em->getRepository('TarifPlatformBundle:tarif')->find($params["idTarif"]);
+        $em->remove($accueil);
+        $em->flush();
+        return  new Response("ok");
+
+    }
 }

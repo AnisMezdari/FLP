@@ -1,3 +1,7 @@
 contact_platform_affichage_front:
     path:     /
     defaults: { _controller: ContactPlatformBundle:Contact:affichageFront }
+
+contact_platform_email_front:
+    path:     /email
+    defaults: { _controller: ContactPlatformBundle:Contact:envoiMail }

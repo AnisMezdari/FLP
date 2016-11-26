@@ -83,4 +83,46 @@ class ContactController extends Controller
 
         return $urlImage;
     }
+
+    public function envoiMailAction(Request $request){
+
+        $nom = $request->request->get('nom');
+        $email = $request->request->get('email');
+        $telephone = $request->request->get('telephone');
+        $ville = $request->request->get('ville');
+        $message= $request->request->get('message');
+
+        $contenuMail = "".$nom."<br>";
+        $contenuMail = $contenuMail . "".$email."<br>";
+        $contenuMail = $contenuMail . "".$telephone."<br>";
+        $contenuMail = $contenuMail . "".$ville."<br>";
+        $contenuMail = $contenuMail . "<p>".$message."</p>";
+
+        // var_dump($contenuMail);
+        // die;
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Contact Fleur de Lys Photography '.$nom)
+        ->setFrom('contact@fleurdelysphotography.fr')
+        ->setTo('mezdari77580@gmail.com')
+        ->setBody(
+            $contenuMail,
+            'text/html'
+        )
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'Emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+    ;
+        $this->get('mailer')->send($message);
+
+        return $this->affichageFrontAction();
+    }
+
+
 }

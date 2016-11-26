@@ -21,9 +21,9 @@ $( ".boutonUploadPortfolio" ).click(function() {
 	        for(var i = 0 ; i < data.urlImage.length ; i++){
 	        	var urlSuppression = $("#lienSuppressionPhotoporfolio").val();
 	        	$(".conteneurImagesPortfolio").
-		        append('<div class = "conteneurImagePortfolio" id= "img-' + data.id[i] + '"> '+
+		        append('<div class = "conteneurImagePortfolio imgPortFolio-' + data.id[i+1] + '" >'+
 		          '<img class = "imagePortfolio" src = "' + data.urlImage[i] + '" alt = "Photo" />'+
-		          '<span  id= "img-' + data.id[i] + '" class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio"> </span>'+
+		          '<span  id= "' + data.id[i+1] + '" class="glyphicon glyphicon-remove fa-lg croixSuppressionPortfolio" onclick = "supprimerPhotoPortfolio(this)" > </span>'+
 		          '<input type="hidden" value="' + urlSuppression + '" id =  "lienSuppressionPhoto" />'+
 		        '</div>');
 	        }
@@ -40,6 +40,7 @@ $( ".boutonUploadPortfolio" ).click(function() {
 
 $( ".croixSuppressionPortfolio" ).click(function() {
 	// console.log($(this).attr("id"));
+
 	var element = $(this).attr("id");
 	var lien = $("#lienSuppressionPhotoPortfolio").val();
 	var idPhoto = element;
@@ -59,3 +60,26 @@ $( ".croixSuppressionPortfolio" ).click(function() {
 	})
 
 });
+
+
+function supprimerPhotoPortfolio(object){
+
+	var element = object.id
+	var lien = $("#lienSuppressionPhotoPortfolio").val();
+	var idPhoto = element;
+	jQuery.ajax({
+	    url: lien,
+	    data: JSON.stringify({"idPhoto": idPhoto}),
+	    contentType: "application/json",
+	    type: 'POST',
+	    success: function(data){
+	    	console.log(data);
+	    	$(".imgPortFolio-" + idPhoto).remove();
+	    },
+	    error: function (data) {
+        	console.log(data.responseText);
+        	// status 500
+    	}
+	})
+
+}

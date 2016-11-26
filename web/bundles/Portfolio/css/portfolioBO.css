@@ -39,7 +39,7 @@
 	font-size: 13px;
 }
 .conteneurImagesPortfolio{
-
+	margin-top : 25px;
 }
 
 .conteneurImagePortfolio {
@@ -48,8 +48,8 @@
 	vertical-align: top;
 	width: 150px;
 	height: 100px;
-	margin-top: 25px;
 	cursor: pointer;
+	margin-bottom : 5px;
 }
 .imagePortfolio{
 	width: 150px;

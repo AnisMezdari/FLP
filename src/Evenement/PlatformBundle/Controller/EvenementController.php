@@ -150,7 +150,7 @@ class EvenementController extends Controller
                 }catch(Exception $e){
                     return new Response($e);
                 }
-                $listeUrlImage["id"][$i] = $evenement->getId();
+                $listeUrlImage["id"][$i] = $imageEvenement->getId();
             }
         }
         $response = new JsonResponse();

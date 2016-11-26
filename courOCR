@@ -295,3 +295,9 @@ enctype="multipart/form-data"
 .titre"Controller"{
 	text-align: left;
 }
+
+
+
+----------------------- GIT -----------------------------------------
+
+git reset --hard HEAD

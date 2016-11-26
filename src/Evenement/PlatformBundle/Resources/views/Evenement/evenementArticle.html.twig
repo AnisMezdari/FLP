@@ -16,13 +16,8 @@
     	</div>
       <input type = "hidden" value = "{{evenements[0].id}}" name = "idEvenement"  id = "idEvenemnt"/>
     	<div class = "conteneurTexteEvenement">
-
-<textarea class ="form-control inputTexteEvenement" name = "nameTexteEvenement"  id="exampleTextarea" >
-{{evenements[0].texte}}
-</textarea>
-
-  	 </div>
-
+        <textarea class ="form-control inputTexteEvenement" name = "nameTexteEvenement"  id="exampleTextarea">{{evenements[0].texte}}</textarea>
+  	   </div>
     </form>
 
     <input name="filesToUpload[]" class = "boutonFileEvenement" id="filesToUploadEvenement" type="file" multiple="" />

@@ -20,6 +20,7 @@
 
 .conteneurImage{
 	display: inline-block;
+	margin-top : 25px;
 }
 
 .conteneurUneImage{
@@ -28,9 +29,8 @@
 	height: 100px;
 	display: inline-block;
 	cursor: pointer;
-	margin-top : 25px;
+	margin-top : 5px;
 	vertical-align: top;
-	margin-right : 20px;
 }
 
 .imageAccueil{

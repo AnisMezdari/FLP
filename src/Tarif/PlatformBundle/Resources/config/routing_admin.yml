@@ -7,3 +7,6 @@ tarif_platform_modification:
 tarif_platform_ajout:
     path:     /tarif/ajout
     defaults: { _controller: TarifPlatformBundle:Tarif:ajout }
+tarif_platform_supression:
+    path:     /tarif/supression
+    defaults: { _controller: TarifPlatformBundle:Tarif:suppression }

@@ -25,7 +25,7 @@
 	  </div>
 	</div>
 
-	<form action = "" method = "post" class = "conteneurFormulaireContactFront">
+	<form action = "{{path('contact_platform_email_front')}}" method = "post" class = "conteneurFormulaireContactFront" id = "formContactEnvoiMail">
 
 		<div class = "conteneurPetitFormulaireContactFront">
 			<div class = "petitFormulaireContactFront">
@@ -43,11 +43,11 @@
 		</div>
 
 		<div class = "conteneurGrandFormulaireContactFront">
-			<textarea placeholder="Message" class = "textareaContactFront"></textarea>
+			<textarea placeholder="Message" class = "textareaContactFront" name = "message"></textarea>
 		</div>
 
 		<div class = "conteneurBoutonEnvoi">
-			<div class = "boutonEnvoiContactFront">
+			<div class = "boutonEnvoiContactFront" onclick="document.getElementById('formContactEnvoiMail').submit();">
 				ENVOYER
 			</div>
 		</div>

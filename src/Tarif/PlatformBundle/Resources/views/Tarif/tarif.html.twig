@@ -12,7 +12,7 @@
 		<div class = "conteneurBoutonTarif" >
 			<div class = "conteneurFormulairesTarif">
 				{% for tarif in tarifs %}
-					<form action = "{{ path('tarif_platform_modification') }}" method = "post" class = "conteneurFormulaireTarif" enctype="multipart/form-data">
+					<form id = "img-{{tarif.id}}" action = "{{ path('tarif_platform_modification') }}" method = "post" class = "conteneurFormulaireTarif" enctype="multipart/form-data">
 						
 						<div class = "conteneurImageTarif">
 							<img src  = "{{tarif.urlImage}}" alt = "image"  name = "imageTarif"  class = "imageTarif"/>
@@ -27,7 +27,9 @@
 						<div class = "conteneurBoutonModifTarif">
 							<input type = "submit" name = "boutonModifTarif" value = "Modifier" class = "boutonModifTarif" />
 						</div>
+						 <span  id= "{{tarif.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionTarif" > </span>
 						<input type = "hidden" value = "{{tarif.id}}" name = "idTarif" />
+						<input type = "hidden" value = "{{path('tarif_platform_supression')}}" id = "lienSupressionTarif" />
 		 			</form>
 			    {% endfor %}
 			</div>

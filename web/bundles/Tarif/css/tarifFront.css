@@ -68,11 +68,12 @@
 	background-color: rgba(62, 62, 62, 1);
 	border: solid rgba(204, 204, 204, 1) 0px;
 	cursor: pointer !important;
-	width : 140px;
-	height : 40px;
+	width : 125px;
+	height : 35px;
 	color : white;
 	padding-top : 10px;
 	font-size : 12px;
+	text-decoration: none;
 }
 
 .conteneurLienTarif:hover{
@@ -81,7 +82,7 @@
 
 .lienTarif{
 	color : white;
-	text-decoration: none;
+	text-decoration: none!important;
 }
 
 .lienTarif:hover{

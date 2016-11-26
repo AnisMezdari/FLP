@@ -15,13 +15,13 @@ $( "#boutonUpload" ).click(function() {
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
-	        console.log(data.id["1"]);
+	        console.log(data);
 	        for(var i = 0 ; i < data.urlImage.length ; i++){
 	        	var urlSuppression = $("#lienSuppressionPhotonu2").val();
 	        	$(".conteneurImage").
-		        append('<div class = "conteneurUneImage" id= "img-' + data.id[i] + '"> '+
-		          '<img class = "imageAccueil" src = "' + data.urlImage[i] + '" alt = "img" />'+
-		          '<span  id= "img-' + data.id[i] + '" class="glyphicon glyphicon-remove fa-lg croixSuppression"> </span>'+
+		        append('<div class = "conteneurUneImage" id= "img-' + data.id[i+1] + '"> '+
+		          '<img id = "' + data.id[i+1] + '" class = "imageAccueil" src = "' + data.urlImage[i] + '" alt = "img" />'+
+		          '<span  id= "' + data.id[i+1] + '" class="glyphicon glyphicon-remove fa-lg croixSuppression" onclick = "croixSuppression(this)"> </span>'+
 		          '<input type="hidden" value="' + urlSuppression + '" id =  "lienSuppressionPhoto" />'+
 		        '</div>');
 	        }
@@ -39,8 +39,6 @@ $( "#boutonUpload" ).click(function() {
 $( ".croixSuppression" ).click(function() {
 	console.log($(this).attr("id"));
 	var element = $(this).attr("id");
-
-	console.log("c passe");
 
 	var lien = $("#lienSuppressionPhoto").val();
 	var idPhoto = element;
@@ -62,7 +60,30 @@ $( ".croixSuppression" ).click(function() {
 
 });
 
+function croixSuppression(object){
 
+	console.log(object.id);
+	var element = object.id;
+
+	var lien = $("#lienSuppressionPhoto").val();
+	var idPhoto = element;
+	console.log(lien);
+	console.log(idPhoto);
+	jQuery.ajax({
+	    url: lien,
+	    data: JSON.stringify({"idPhoto": idPhoto}),
+	    contentType: "application/json",
+	    type: 'POST',
+	    success: function(data){
+	    	$("#img-" + idPhoto).remove();
+	    },
+	    error: function (data) {
+        	console.log(data.responseText);
+        	// status 500
+    	}
+	})
+
+}
 // DRAG AND DROP
 
 
