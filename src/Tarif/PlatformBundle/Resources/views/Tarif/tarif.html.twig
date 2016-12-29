@@ -13,14 +13,14 @@
 			<div class = "conteneurFormulairesTarif">
 				{% for tarif in tarifs %}
 					<form id = "img-{{tarif.id}}" action = "{{ path('tarif_platform_modification') }}" method = "post" class = "conteneurFormulaireTarif" enctype="multipart/form-data">
-						
+
 						<div class = "conteneurImageTarif">
 							<img src  = "{{tarif.urlImage}}" alt = "image"  name = "imageTarif"  class = "imageTarif"/>
 							<input type = "file" name = "inputFileTarif"  />
 						</div>
 						<div class = "conteneurTextTarif">
 							<input type = "text" value = "{{tarif.texte}}" name = "textTarif"  class = "form-control textTarif" />
-						</div> 
+						</div>
 						<div class = "conteneurPrixTarif">
 							<input type = "text" value = "{{tarif.prix}}" name = "prixTarif" class = "form-control prixTarif" />
 						</div>
@@ -30,6 +30,7 @@
 						 <span  id= "{{tarif.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionTarif" > </span>
 						<input type = "hidden" value = "{{tarif.id}}" name = "idTarif" />
 						<input type = "hidden" value = "{{path('tarif_platform_supression')}}" id = "lienSupressionTarif" />
+						<textarea class ="form-control fullTexte" name = "fullTexte" id="exampleTextarea">{{tarif.fullTexte}}</textarea>
 		 			</form>
 			    {% endfor %}
 			</div>

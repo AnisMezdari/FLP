@@ -42,6 +42,12 @@ class tarif
      */
     private $prix;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fulltexte", type="text")
+     */
+    private $fullTexte;
 
     /**
      * Get id
@@ -124,5 +130,28 @@ class tarif
     {
         return $this->prix;
     }
-}
 
+    /**
+     * Set fullTexte
+     *
+     * @param string $fullTexte
+     *
+     * @return fullTexte
+     */
+    public function setFullTexte($fullTexte)
+    {
+        $this->fullTexte = $fullTexte;
+
+        return $this;
+    }
+
+    /**
+     * Get fullTexte
+     *
+     * @return string
+     */
+    public function getFullTexte()
+    {
+        return $this->fullTexte;
+    }
+}

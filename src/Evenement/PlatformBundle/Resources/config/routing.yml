@@ -1,0 +1,7 @@
+evenement_platform_affichage_front:
+    path:     /
+    defaults: { _controller: EvenementPlatformBundle:Evenement:affichageFront }
+
+evenement_platform_affichage_front_en_savoir_plus:
+    path:     /savoirplus
+    defaults: { _controller: EvenementPlatformBundle:Evenement:affichageFrontEnSavoirPlus }

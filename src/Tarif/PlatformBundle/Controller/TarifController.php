@@ -13,10 +13,10 @@ class TarifController extends Controller
     public function affichageAction()
     {
     	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
-        $tarifs = $repository->findAll();
+      $tarifs = $repository->findAll();
 
-        // Envoi des données à la vue
-        return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
+      // Envoi des données à la vue
+      return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
     }
 
     public function affichageFrontAction(Request $request)
@@ -52,7 +52,7 @@ class TarifController extends Controller
                     if($i == 0){
                         $estPremier = true;
                     }
-                } 
+                }
             }
         }
         $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
@@ -82,27 +82,30 @@ class TarifController extends Controller
     	$text = $request->request->get('textTarif');
     	$prix = $request->request->get('prixTarif');
     	$image = $request->request->get('inputFileTarif');
+      $fullTexte = $request->request->get('fullTexte');
     	$images = $request->files->all();
 
+
     	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
-        $tarif = $repository->findOneBy(array("id" => $idTarif));
-        $tarif->setTexte($text);
-        $tarif->setPrix($prix);
+      $tarif = $repository->findOneBy(array("id" => $idTarif));
+      $tarif->setTexte($text);
+      $tarif->setPrix($prix);
+      $tarif->setFullTexte($fullTexte);
 
     	if($images["inputFileTarif"] != NULL ){
-			$image = $this->uploadImage($image, $request);
+			  $image = $this->uploadImage($image, $request);
     		$tarif->setUrlImage($image);
-        }
+      }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($tarif);
-        
-        try{
-            $em->flush();
-        }catch(Exception $e){
-            return new Response($e);
-        }
-        return $this->affichageAction();
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($tarif);
+
+      try{
+          $em->flush();
+      }catch(Exception $e){
+          return new Response($e);
+      }
+      return $this->affichageAction();
 
     }
     public function ajoutAction(){
@@ -124,7 +127,7 @@ class TarifController extends Controller
     	$semiPath = "/FLP/Symfony/web/bundles/Tarif/upload";
     	// initialisation du chemin pour le serveur afin d'upload l'image dedans
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Tarif/upload';
-    	// récupération de l'image 
+    	// récupération de l'image
     	$images = $request->files->all();
     	$image = $images["inputFileTarif"];
 
@@ -140,7 +143,7 @@ class TarifController extends Controller
 
         $params = array();
         $content = $request->getContent();
-        $params = json_decode($content ,true); 
+        $params = json_decode($content ,true);
         $em = $this->getDoctrine()->getManager();
         $accueil = $em->getRepository('TarifPlatformBundle:tarif')->find($params["idTarif"]);
         $em->remove($accueil);

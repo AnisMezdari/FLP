@@ -42,11 +42,13 @@ tarif_platform:
     resource: "@TarifPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
-
 # Événements
 evenement_platform_admin:
     resource: "@EvenementPlatformBundle/Resources/config/routing_admin.yml"
     prefix:   /administrateur
+evenement_platform:
+    resource: "@EvenementPlatformBundle/Resources/config/routing.yml"
+    prefix:   /evenement
 
 # Utilisateurs
 user_platform:

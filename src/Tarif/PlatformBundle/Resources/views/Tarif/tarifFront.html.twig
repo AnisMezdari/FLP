@@ -3,18 +3,7 @@
 {% block body %}
 	{# <h4> Tarif</h4> #}
 	<div class = "conteneurTarifsFront">
-{# 		<div class = "conteneurTextesTarfiFront">
-			{% for tarif in tarifs %}
-				<form action = "path('tarif_platform_homepage')" method = "post" class = "conteneurTexteTarifFront">
-					{{tarif.texte}}
-					<input type = "hidden" value = "{{tarif.id}}" name = "tarifId" />
-				</form>
-			{% endfor %}
-		</div> #}
 		<div class = "conteneurTarifFront">
-			<div class = "conteneurTexteDeuxTarifFront">
-				{{tarif.texte}}
-			</div>
 			{% if estPremier == false %}
 				<form  class = "conteneurFlecheDroite" id = "formTarif" action = "{{path('tarif_platform_suivant')}}" method = "post">
 					<span type = "submit" class="glyphicon glyphicon-chevron-left flecheDroite" aria-hidden="true" onclick="document.getElementById('formTarif').submit();"></span>
@@ -23,11 +12,21 @@
 				</form>
 			{% endif %}
 			<div class = "conteneurImageTarifFront">
-				<img src = "{{tarif.urlImage}}" alt = "Image anniversaire" class = "imageTarifFront"/>
+				<div class = "conteneurImageDeux">
+					<img src = "{{tarif.urlImage}}" alt = "Image anniversaire" class = "imageTarifFront"/>
+				</div>
 			</div>
-			<div class = "conteneurPrixTarifFront">
-				{{tarif.prix}}
-			</div>
+			<div class = "conteneurTitrePlusTexte">
+				<div class = "conteneurTexteDeuxTarifFront">
+					{{tarif.texte}}
+				</div>
+				<div class = "contenurFullTexte">
+					{{tarif.fullTexte}}
+				</div>
+				<div class = "conteneurPrixTarifFront">
+					{{tarif.prix}}
+				</div>
+		</div>
 			{% if estDernier == false %}
 				<form  class = "conteneurFlecheDroite" id = "formTarif2" action = "{{path('tarif_platform_suivant')}}" method = "post">
 					<span type = "submit" class="glyphicon glyphicon-chevron-right flecheDroite" aria-hidden="true" onclick="document.getElementById('formTarif2').submit();"></span>
@@ -36,7 +35,7 @@
 				</form>
 			{% endif %}
 		</div>
-		
+
 		<div class = "conteneurLienTarif">
 			<a href = "{{path('contact_platform_affichage_front')}}" class = "lienTarif">ME CONTACTER</a>
 		</div>

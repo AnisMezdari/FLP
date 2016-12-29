@@ -19,7 +19,6 @@
 }
 
 .conteneurFormulaireTarif{
-	border-bottom : 1px solid black;
 	margin-bottom : 15px;
 	padding : 10px;
 }
@@ -32,7 +31,7 @@
 	display : inline-block;
 	width: 25%;
 	vertical-align: middle;
-	
+
 }
 .conteneurPrixTarif{
 	display: inline-block;
@@ -67,4 +66,9 @@
 
 .croixSuppressionTarif:hover{
 	color : red;
+}
+
+.fullTexte{
+	margin-top : 20px;
+	margin-bottom: 15px;
 }

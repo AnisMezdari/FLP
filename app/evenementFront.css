@@ -1,0 +1,12 @@
+.conteneurTitreEvenementFront{
+	font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+	color: #3E3E3E;
+	word-wrap: break-word;
+	letter-spacing: -0.06em;
+	font-style: italic;
+	font-size: 50px;
+}
+
+.conteneurEvenemnetFront{
+	margin-top : 40px;
+}

@@ -22,6 +22,47 @@ class EvenementController extends Controller
 		return $this->render('EvenementPlatformBundle:Evenement:evenement.html.twig',array("evenements" =>$modele ));
     }
 
+    public function affichageFrontAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:imageEvenement');
+        $qb = $repository->createQueryBuilder('image')
+        ->join('image.evenement' , 'event')
+        ->addSelect('event')
+        ;
+
+        $evenemntImage = $qb
+        ->getQuery()
+        ->getResult()
+        ;
+
+        // var_dump($evenemntImage);
+        // die();
+
+        // Envoi des données à la vue
+        return $this->render('EvenementPlatformBundle:Evenement:evenementFront.html.twig',array("evenements" =>$evenemntImage ));
+    }
+
+    public function affichageFrontEnSavoirPlusAction(Request $request)
+    {
+         $idEvenement = $request->request->get('idEvenement');
+
+        $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:evenement');
+        $qb = $repository->createQueryBuilder('event')
+        ->select('event,img')
+        ->leftjoin('EvenementPlatformBundle:imageEvenement', 'img', 'WITH' , 'img.evenement = event.id')
+        ->where('event.id = :idEvent' )
+        // ->addSelect('EvenementPlatformBundle:imageEvenement')
+        ->setParameter('idEvent', $idEvenement)
+        ;
+
+        $evenemntImage = $qb
+        ->getQuery()
+        ->getResult()
+        ;
+
+        return $this->render('EvenementPlatformBundle:Evenement:evenementEnSavoirPlus.html.twig',array("evenements" => $evenemntImage ));
+    }
+
     public function ajoutAction(){
         $evenement = new Evenement();
         $evenement->setTitre(" Nouvelle événément");
@@ -82,6 +123,9 @@ class EvenementController extends Controller
         ->getResult()
         ;
 
+        // var_dump($evenemntImage);
+        // die();
+
         return $this->render('EvenementPlatformBundle:Evenement:evenementArticle.html.twig', array("evenements" => $evenemntImage));
     }
 
@@ -113,7 +157,7 @@ class EvenementController extends Controller
     public function ajoutArticleAction(Request $request){
 
         // récupération de la requête 
-        $semiPath = "/FLP/Symfony/web/bundles/Evenement/upload";
+        $semiPath = "/Symfony/web/bundles/Evenement/upload";
 
         $images = $request->files->all();
         $idEvenement = $images["idEvenement"]->getClientOriginalName();

@@ -1,27 +1,22 @@
 <div class="navFixed">
 	<header class = "frontHeader">
-		<img class = "imgFrontHeader" src = "{{asset('bundles/Accueil/image/logoTest.png')}}" alt = "logoFlS" />
+		<a href = "{{ path('accueil_platform_homepage') }}"><img class = "imgFrontHeader" src = "{{asset('bundles/Accueil/image/logoTest.png')}}" alt = "logoFlS" /></a>
 	</header>
 
 	<nav class = "conteneurfrontNav">
 		<div class = "frontNav">
-			<a href="{{ path('accueil_platform_homepage') }}">
-	   			Accueil
-			</a>  
+			<a href="{{ path('portfolio_platform_homepage') }}">
+	   			Portfolio
+			</a>
 		</div>
 		<div class = "frontNav">
 			<a href="{{ path('presentation_platform_homepage') }}">
-	   			Présentation
+	   			Fleur de lys
 			</a>
 		</div>
 		<div class = "frontNav">
-			<a href="{{ path('contact_platform_affichage_front') }}">
-				Contact
-			</a>
-		</div>
-		<div class = "frontNav">
-			<a href="{{ path('portfolio_platform_homepage') }}">
-	   			Portfolio
+			<a href = "{{ path('evenement_platform_affichage_front')}}">
+				Evénement
 			</a>
 		</div>
 		<div class = "frontNav">
@@ -30,10 +25,12 @@
 			</a>
 		</div>
 		<div class = "frontNav">
-			Evénement
+			<a href="{{ path('contact_platform_affichage_front') }}">
+				Contact
+			</a>
 		</div>
 		<div class = "frontNav">
-			Utilisateurs
+			Mon compte
 		</div>
 	</nav>
 </div>

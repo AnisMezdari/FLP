@@ -1,0 +1,59 @@
+{% extends "::baseFront.html.twig" %}
+
+{% block body %}
+	<h2> Evénement </h2>
+	{% set id = -1 %}
+	{% for evenement in evenements %}
+		{% if  evenement.evenement.id != id %}
+			<div class="row conteneurEvenemnetFront">
+				<div class="col-md-1">
+				</div>
+
+				<div class="col-md-10">
+					<div class="thumbnail">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="caption conteneurTitreEvenementFront">
+									<p>{{evenement.evenement.titre}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-7">
+								<a href="{{evenement.urlImage}}" target="_blank">
+									<img src="{{evenement.urlImage}}" alt="" style="width:100%">
+								</a>
+							</div>
+
+							<div class="col-md-5" style = "margin-top : 100px;">
+								<div class="row">
+								</div>
+								<div class="row">
+									<div class="caption ">
+										<p style = "overflow:hidden; height:80px;">{{evenement.evenement.texte}}</p>...
+									</div>
+								</div>
+								<div class="row">
+									 <form  action = "{{path('evenement_platform_affichage_front_en_savoir_plus')}}" method = "post">
+								    	<div class="form-group">
+								    		<input type = "hidden" value = "{{evenement.evenement.id}}" name = "idEvenement" />
+								    		<input class="btn btn-default" type="submit"  name="bouton" id = "buttonEnSavoirPlus" value="En savoir plus"/>
+								    	</div>
+    								</form>
+								</div>
+							</div>
+						</div>
+						<div class="caption">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-1">
+				</div>
+				{% set id =  evenement.evenement.id %}
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
+
+

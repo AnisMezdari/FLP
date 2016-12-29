@@ -1,0 +1,38 @@
+{% extends "::baseFront.html.twig" %}
+
+{% block body %}
+  <div class="row conteneurEvenementEnSavoirPlus">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-10 conteneurContenuEvenementEnSavoirPlus" >
+
+      <div class="row">
+        <div class="caption text-left ">
+          <h2 class = "conteneurTitreEvenementEnSavoirPlus"> {{evenements[0].titre}} </h2>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="caption text-left conteneurTexteEvenementEnSavoirPlus">
+            <p>{{evenements[0].texte}}</p>
+          </div>
+      </div>
+
+      {% set i = 0 %}
+      {% for evenement in evenements %}
+        {% if i != 0 %}
+          {% if evenement != NULL %}
+            <div class = "row">
+                <img src="{{evenement.urlImage}}" alt="Image événemnent" style="width:100%;max-width : 1280px; margin-bottom:20px;">
+            </div>
+          {% endif %}
+        {% endif %}
+        {% set i = i+1 %}
+      {% endfor %}
+    </div>
+
+    <div class="col-md-1"></div>
+
+  </div>
+{% endblock %}
