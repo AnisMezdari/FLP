@@ -51,12 +51,13 @@ evenement_platform:
     prefix:   /evenement
 
 # Utilisateurs
+user_platform_admin:
+    resource: "@UserPlatformBundle/Resources/config/routing_admin.yml"
+    prefix:   /administrateur
+
 user_platform:
     resource: "@UserPlatformBundle/Resources/config/routing.yml"
-    prefix:   /user
+    prefix:   /compte
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
-
-

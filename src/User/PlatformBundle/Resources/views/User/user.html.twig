@@ -1,0 +1,49 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+<div class = "conteneurColonne">
+  <div class = "conteneurColonneNom">
+    Nom
+  </div>
+  <div class = "conteneurColonnePrenom">
+    Prénom
+  </div>
+  <div class = "conteneurColonneEmail">
+    Email
+  </div>
+</div>
+
+{% for user in users %}
+
+  <div class = "conteneurTableau">
+    <div class = "conteneurTableauValeur">
+      <div class = "conteneurValeurNom">
+        {{user.username}}
+      </div>
+
+      <div class = "conteneurValeurPrenom">
+      </div>
+
+      <div class = "conteneurValeurEmail">
+        {{user.email}}
+      </div>
+    </div>
+
+    <div>
+      <form >
+        <input type = "submit" value = "Voir" />
+      </form>
+      <form>
+        <input type = "submit" value = "Supprimer" />
+      </form>
+    </div>
+  </div>
+
+
+
+
+{% endfor %}
+
+
+{% endblock %}
