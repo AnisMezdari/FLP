@@ -19,13 +19,13 @@ class UserController extends Controller
       // Envoi des données à la vue
       return $this->render('UserPlatformBundle:User:user.html.twig',array("users" =>$users));
   }
-  
+
   public function ajoutAction(Request $request){
-    
+
         $name = $request->request->get('name');
         $firstname = $request->request->get('firstname');
         $email = $request->request->get('email');
-    
+
         $user = new User();
         $user->setName($name);
         $user->setFirstname($firstname);
@@ -60,5 +60,6 @@ class UserController extends Controller
       var_dump($user);
         return $this->render('UserPlatformBundle:User:oneUser.html.twig', array("user" => $user));
   }
+=======
 
 }
