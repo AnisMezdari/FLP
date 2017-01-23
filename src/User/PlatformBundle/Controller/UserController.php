@@ -60,6 +60,6 @@ class UserController extends Controller
       var_dump($user);
         return $this->render('UserPlatformBundle:User:oneUser.html.twig', array("user" => $user));
   }
-=======
+
 
 }
