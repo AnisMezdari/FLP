@@ -1,0 +1,76 @@
+
+.conteneurUser{
+	width : 100%;
+	margin : auto;
+  padding-left : 8%;
+
+}
+.titreUser{
+	text-align: left;
+}
+
+.conteneurColonne{
+  width : 88%;
+  margin-top : 40px;
+  border-bottom:   2px solid black;
+}
+
+.conteneurColonneNom{
+  width : 25%;
+  display: inline-block;
+
+}
+
+.conteneurColonnePrenom{
+  display: inline-block;
+  width : 25%;
+}
+
+.conteneurColonneEmail{
+    display: inline-block;
+    width : 25%;
+
+}
+
+.conteneurTableau{
+  text-align: left;
+  width: 88%;
+
+  margin-top : 20px;
+}
+
+.conteneurLigne{
+  margin-top: 3px;
+}
+
+
+.conteneurValeurNom{
+
+  display: inline-block;
+  width : 25%;
+}
+
+.conteneurValeurPrenom{
+
+  display: inline-block;
+  width : 25%;
+}
+
+.conteneurValeurEmail{
+  display: inline-block;
+  width : 25%;
+}
+
+.conteneurBouton{
+  display: inline-block;
+}
+
+.conteneurBoutonVoir{
+  width : 5%;
+  display: inline-block;
+}
+
+.conteneurBoutonModifier{
+  width : 5%;
+  display: inline-block;
+}

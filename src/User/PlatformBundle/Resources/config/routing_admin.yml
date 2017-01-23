@@ -1,3 +1,7 @@
 user_platform_affichage:
     path:     /utilisateurs
     defaults: { _controller: UserPlatformBundle:User:affichage }
+
+user_platform_voir:
+    path:     /utilisateur/voir
+    defaults: { _controller: UserPlatformBundle:User:voir }

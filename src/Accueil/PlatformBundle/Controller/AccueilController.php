@@ -37,18 +37,18 @@ class AccueilController extends Controller
         $photos = $repository->findAll();
         return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
     }
-    
+
    /**
     *
-    * Ajout de plusieurs photos en même temps en BDD 
+    * Ajout de plusieurs photos en même temps en BDD
     * retourne les liens des photos ajoutées.
     * @param liste de photo en type file
     * @return Array listeUrlImage
-    * 
+    *
     */
     public function ajout_photoAction(Request $request)
     {
-        // récupération de la requête 
+        // récupération de la requête
         // $semiPath = "/Symfony/web/bundles/Accueil/upload";
 
         $semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
@@ -73,7 +73,7 @@ class AccueilController extends Controller
             $accueil->setUrlImage($urlImage);
             $em = $this->getDoctrine()->getManager();
             $em->persist($accueil);
-            
+
             try{
                 $em->flush();
             }catch(Exception $e){
@@ -81,7 +81,7 @@ class AccueilController extends Controller
             }
             $listeUrlImage["id"][$i] = $accueil->getId();
         }
-       
+
         $response = new JsonResponse();
         $response->setData($listeUrlImage);
   		return $response;
@@ -89,17 +89,17 @@ class AccueilController extends Controller
 
    /**
     *
-    * Suppression d'une photo 
+    * Suppression d'une photo
     * @param la photo à supprimer
     * @return l'id à supprimer
-    * 
+    *
     */
     public function suppression_photoAction(Request $request)
     {
 
         $params = array();
         $content = $request->getContent();
-        $params = json_decode($content ,true); 
+        $params = json_decode($content ,true);
         $em = $this->getDoctrine()->getManager();
         $accueil = $em->getRepository('AccueilPlatformBundle:Accueil')->find($params["idPhoto"]);
         var_dump("accueil : ", $accueil);
