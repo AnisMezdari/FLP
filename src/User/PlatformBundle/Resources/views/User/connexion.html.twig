@@ -1,0 +1,39 @@
+{% extends "::baseFront.html.twig" %}
+
+{% block body %}
+
+<div class ="conteneurConnexion">
+
+  <div class = "conteneurTexteConnexion">
+    <div class = "texteConnexion">
+      Connectez-vous <br>
+      pour accéder à vos photos
+    </div>
+  </div>
+
+  <form class = "conteneurFormulaireConnexion">
+    <div class = "conteneurIdentifiant">
+      <input type = "text" name = "email" placeholder = "Email" class = "form-control"/>
+    </div>
+      <div class = "conteneurMotDePasse">
+        <input type = "text" name = "motdepasse" placeholder = "Mot de passe" class = "form-control" />
+      </div>
+
+    <input type = "submit" value = "Valider" class = "boutonValiderConnexion" />
+  </form>
+
+  <div class = "conteneurTexteConnexion">
+    <div class = "texteConnexion">
+      Vous n'avez pas de compte ? <br>
+      Contactez-nous
+    </div>
+
+    <div class = "conteneurLienTarif">
+      <a href = "{{path('contact_platform_affichage_front')}}" class = "lienTarif">CONTACTEZ-NOUS</a>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

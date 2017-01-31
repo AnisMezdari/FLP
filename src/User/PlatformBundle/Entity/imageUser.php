@@ -67,4 +67,10 @@ class imageUser
     {
         return $this->urlImage;
     }
+
+
+    public function setUser($user){
+      $this->user = $user;
+      return $this;
+    }
 }

@@ -66,11 +66,9 @@
 }
 
 .conteneurBoutonVoir{
-  width : 5%;
   display: inline-block;
 }
 
-.conteneurBoutonModifier{
-  width : 5%;
+.conteneurBoutonSupprimer{
   display: inline-block;
 }

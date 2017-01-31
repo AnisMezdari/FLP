@@ -2,8 +2,51 @@
 
 {% block body %}
 
-  <div class = "conteneurUser">
-    <h1 class = "titreOneUser">{{user[0].username}}</h1>
+  <div class = "conteneurOneUser">
+
+    <form  action = "{{path('user_platform_modification')}}" method = "post">
+      <h1 class = "titreOneUser">{{users[0].nom}} {{users[0].prenom}}</h1>
+
+      <div class = "conteneurBoutonOneUser">
+        <input type="submit" name="bouton" id = "boutonModificationOneUser" value="Modifier" class="boutonOneUser"/>
+      </div>
+
+      <div class = "conteneurInputEmail">
+          <input type = "text"  value = "{{users[0].email}}" name = "nameEmail"  class = "form-control inputEmail"/>
+      </div>
+      <input type = "hidden" value = "{{users[0].id}}" name = "idUser"  id = "idOneUser"/>
+      <div class = "conteneurInputName">
+          <input type = "text"  value = "{{users[0].nom}}" name = "nameNom"  class = "form-control inputName"/>
+       </div>
+       <div class = "conteneurFirstName">
+           <input type = "text"  value = "{{users[0].prenom}}" name = "namePrenom"  class = "form-control inputFirstName"/>
+      </div>
+      <div class = "conteneurInputLogin">
+        <input type = "text"  value = "{{users[0].portable}}" name = "namePortable"  class = "form-control inputLogin"/>
+      </div>
+
+    </form>
+
+    <input name="filesToUpload[]" class = "boutonFileOneUser" id="filesToUploadOneUser" type="file" multiple="" />
+    <input type="submit" value = "upload" name="boutonUploadOneUser" class ="boutonUploadOneUser" />
+    <input type="hidden" id="lienSuppressionPhotonu2OneUser" value="{{ path('user_platform_suppression_photo') }}" />
+    <input type="hidden" value = "{{path('user_platform_ajout')}}" id = "lienAjoutPhotoOneUser" />
+
+    {% set i = 0 %}
+  	<div class = "conteneurImagesOneUser">
+      {% for user in users %}
+        {% if i != 0 %}
+          {% if user != NULL %}
+      		<div class = "conteneurImageOneUser imgOneUser-{{user.id}}">
+      			<img src = "{{user.urlImage}}" alt = "photo événement" class  = "imageOneUser" />
+    		  	<span  id= "{{user.id}}" class="glyphicon glyphicon-remove fa-lg croixSuppressionOneUser" > </span>
+      		</div>
+          {% endif %}
+        {% endif %}
+        {% set i = i+1 %}
+      {% endfor %}
+  	</div>
+
 
   </div>
 

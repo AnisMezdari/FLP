@@ -5,6 +5,9 @@
 <div class = "conteneurUser">
   <h1 class = "titreUser">Utilisateurs</h1>
 
+  <form action = "{{path('user_platform_affichageAjout')}}" method = "post">
+    <input type = "submit" value = "Ajouter" />
+  </form>
   <div class = "conteneurColonne">
     <div class = "conteneurColonneNom">
       Nom
@@ -19,13 +22,13 @@
 
   <div class = "conteneurTableau">
   {% for user in users %}
-    <div class = "conteneurLigne">
+    <div id = "user-{{user.id}}" class = "conteneurLigne">
         <div class = "conteneurValeurNom">
-          {{user.username}}
+          {{user.nom}}
         </div>
 
         <div class = "conteneurValeurPrenom">
-          Prenom
+          {{user.prenom}}
         </div>
 
         <div class = "conteneurValeurEmail">
@@ -34,10 +37,11 @@
       <form action =  "{{ path('user_platform_voir') }}" method = "post" class = "conteneurBoutonVoir">
         <input type = "submit" value = "Voir" />
         <input type = "hidden" name = "idUser" value = "{{user.id}}" />
+        <input id = "lienSuppressionUser" type="hidden" value =  "{{path('user_platform_suppression')}}"/>
       </form>
-      <form class = "conteneurBoutonModifier">
-        <input type = "submit" value = "Supprimer" />
-      </form>
+      <button id = "{{user.id}}" class = "conteneurBoutonSupprimer">
+        Supprimer
+      </button>
   </div>
 
   {% endfor %}

@@ -5,3 +5,27 @@ user_platform_affichage:
 user_platform_voir:
     path:     /utilisateur/voir
     defaults: { _controller: UserPlatformBundle:User:voir }
+
+user_platform_modification:
+    path:     /utilisateur/modification
+    defaults: { _controller: UserPlatformBundle:User:modification }
+
+user_platform_ajout:
+    path:     /utilisateur/ajout/photo
+    defaults: { _controller: UserPlatformBundle:User:ajout }
+
+user_platform_suppression_photo:
+    path:     /utilisateur/suppression/photo
+    defaults: { _controller: UserPlatformBundle:User:suppression }
+
+user_platform_suppression:
+    path:     /utilisateur/suppression
+    defaults: { _controller: UserPlatformBundle:User:suppressionUser }
+
+user_platform_affichageAjout:
+    path:     /utilisateur/affichage/ajout
+    defaults: { _controller: UserPlatformBundle:User:affichageAjout }
+
+user_platform_addUser:
+    path:     /utilisateur/ajout
+    defaults: { _controller: UserPlatformBundle:User:addUser }

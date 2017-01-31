@@ -1,0 +1,85 @@
+.conteneurOneUser{
+	width : 78%;
+	margin : auto;
+	text-align : center!important;
+}
+
+.titreOneUser{
+  	text-align: left;
+}
+
+.conteneurBoutonOneUser{
+  margin-top :30px;
+}
+
+.conteneurInputLogin{
+  margin-top : 30px;
+}
+
+.inputLogin{
+  display: inline-block!important;
+  width : 70%!important;
+}
+
+.conteneurInputName{
+  	margin-top : 30px;
+}
+
+.inputName{
+  display: inline-block!important;
+  width : 70%!important;
+}
+
+.conteneurFirstName{
+  	margin-top : 30px;
+}
+
+.inputFirstName{
+  display: inline-block!important;
+  width : 70%!important;
+}
+
+.conteneurInputEmail{
+  	margin-top : 30px;
+}
+
+.inputEmail{
+  display: inline-block!important;
+  width : 70%!important;
+}
+
+.boutonFileOneUser{
+	margin-top : 50px;
+	display : initial!important;
+	margin-right : 20px;
+	margin-bottom : 30px;
+}
+.conteneurImagesOneUser{
+	margin-top : 30px;
+}
+.conteneurImageOneUser{
+	display: inline-block;
+	vertical-align: top;
+	width: 150px;
+	position : relative;
+	cursor: pointer;
+	margin-bottom : 5px;
+}
+.imageOneUser {
+	width : 150px;
+	height : 100px;
+}
+
+.croixSuppressionOneUser{
+	position: absolute!important;
+	font-size: 20px;
+	right: 0.1em;
+	opacity :0;
+	color : white;
+}
+.conteneurImageOneUser:hover .croixSuppressionOneUser {
+	opacity: 1;
+}
+.croixSuppressionOneUser:hover{
+	color : red;
+}

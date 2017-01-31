@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class = "conteneurOneUser">
+
+  <form  action = "{{path('user_platform_addUser')}}" method = "post">
+    <h1 class = "titreOneUser"> Ajout d'un utilisateur</h1>
+
+    <div class = "conteneurBoutonOneUser">
+      <input type="submit" name="bouton" id = "boutonModificationOneUser" value="Modifier" class="boutonOneUser"/>
+    </div>
+
+    <div class = "conteneurInputEmail">
+        <input type = "text"  placeholder = "Email" name = "nameEmail"  class = "form-control inputEmail"/>
+    </div>
+
+    <div class = "conteneurInputName">
+        <input type = "text"  placeholder = "Nom" name = "nameNom" class = "form-control inputName"/>
+     </div>
+     <div class = "conteneurFirstName">
+         <input type = "text"  placeholder = "Prenom" name = "namePrenom"  class = "form-control inputFirstName"/>
+    </div>
+    <div class = "conteneurInputLogin">
+      <input type = "text"   placeholder = "Numéro de portable" name = "namePortable"  class = "form-control inputLogin"/>
+    </div>
+
+  </form>
+
+</div>
+{% endblock %}

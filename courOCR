@@ -1,6 +1,6 @@
-*************************************************************** Routeure ************************************************** 
+*************************************************************** Routeure **************************************************
 
-imen : s2griff.fr  
+imen : s2griff.fr
 stepanie martin photo
 laurent andré photographe
 bac stage studio
@@ -30,7 +30,7 @@ depuis la vue ->
 
     Lien vers l'annonce d'id {{ advert_id }}
 
-</a>        
+</a>
 
 
 
@@ -63,7 +63,7 @@ if ($request->isXmlHttpRequest())
 Pour plus de renseignement : http://api.symfony.com/3.0/Symfony/Component/HttpFoundation/Request.html
 
 
-Pour retourner une response tout en respectant larchitecture MVC : 
+Pour retourner une response tout en respectant larchitecture MVC :
 
 // On utilise le raccourci : il crée un objet Response
 // Et lui donne comme contenu le contenu du template
@@ -73,18 +73,18 @@ return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
 ));
 
 
-redirection : 
+redirection :
    return $this->redirectToRoute('oc_platform_home');
 
 
 
-Si la redirection va trop vite : 
+Si la redirection va trop vite :
 
-Symfony a la réponse ! Je vous invite dès maintenant à modifier la valeur du paramètre intercept_redirects  à true dans le fichier app/config/config_dev.yml. 
+Symfony a la réponse ! Je vous invite dès maintenant à modifier la valeur du paramètre intercept_redirects  à true dans le fichier app/config/config_dev.yml.
 
 
 
-Session : 
+Session :
 
 	// Récupération de la session
     $session = $request->getSession();
@@ -125,12 +125,12 @@ Date : {{ date|date('d/m/Y') }}
 concaténation : Identité : {{ nom ~ " " ~ prenom }}
 
 
-filtre utile : 
+filtre utile :
 
 upper -> {{ var|upper }}
 striptags -> {{ var|striptags }}
 date - > {{ date|date('d/m/Y') }}  ( Date d'aujourd'hui : {{ "now"|date('d/m/Y') }} )
-format -> {{ "Il y a %s pommes et %s poires"|format(153, nb_poires) }}   ( comme le printf) 
+format -> {{ "Il y a %s pommes et %s poires"|format(153, nb_poires) }}   ( comme le printf)
 length -> Longueur de la variable : {{ texte|length }}  Nombre d'éléments du tableau : {{ tableau|length }}
 raw< -> désactive la protection html
 sinon -> http://twig.sensiolabs.org/doc/filters/index.html
@@ -147,7 +147,7 @@ variable global :
 		app.user -> l'utilisateur courant
 
 
-IF ELSE  -> 
+IF ELSE  ->
 
 	{% if membre.age < 12 %}
 	  Il faut avoir au moins 12 ans pour ce film.
@@ -158,7 +158,7 @@ IF ELSE  ->
 	{% endif %}
 
 
-FOR  -> 
+FOR  ->
 
   {% for membre in liste_membres %}
     <li>{{ membre.pseudo }}</li>
@@ -166,7 +166,7 @@ FOR  ->
     <li>Pas d'utilisateur trouvé.</li>
   {% endfor %}
 
-FOR + option -> 
+FOR + option ->
 
   {% for valeur, option in liste_options %}
     <option value="{{ valeur }}">{{ option }}</option>
@@ -197,7 +197,7 @@ pour plus de detail -> http://twig.sensiolabs.org/doc/tests/index.html
 inclusion : {{ include("OCPlatformBundle:Advert:form.html.twig") }}
 
 
-LIEN vers dautre route : 
+LIEN vers dautre route :
 {{ path('oc_platform_home') }}
 
 
@@ -221,6 +221,11 @@ php bin/console doctrine:schema:update --dump-sql
 
 php bin/console doctrine:schema:update --force
 
+
+
+Génré GETTERS AND SETTERS
+
+php bin/console doctrine:generate:entities User/PlatformBundle/Entity/User
 
 
 
@@ -248,7 +253,7 @@ yml
  $modele = $repository->find(1);
 // Envoi des données à la vue
 return $this->render('ControllerPlatformBundle:Controller:vue.html.twig',array("modele" =>$modele ));
- 
+
 ------ SELECT Par ID -------
 $repository = $this->getDoctrine()->getRepository('ControllerPlatformBundle:modele');
 $modele = $repository->findOneBy(array("id" => $idModele));

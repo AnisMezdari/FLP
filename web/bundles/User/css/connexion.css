@@ -1,0 +1,55 @@
+.conteneurConnexion{
+
+  font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+  color: #3E3E3E;
+  display : inline-block!important;
+	margin : auto;
+	width : 85%;
+	text-align: center;
+	margin-top : 60px;
+}
+
+.conteneurTexteConnexion{
+  font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+  color: #3E3E3E;
+  font-size: 23px;
+}
+
+.conteneurFormulaireConnexion{
+  display : inline-block;
+  text-align: center;
+  margin-top : 50px;
+  width : 40%;
+
+}
+
+.conteneurIdentifiant{
+
+}
+
+.conteneurMotDePasse{
+  margin-top : 5px;
+}
+.boutonValiderConnexion{
+  width : 90px;
+	height : 25px;
+	color : white;
+	font-size : 12px;
+  font: normal normal normal 13px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif;
+  transition: color 0.4s ease 0s;
+  color: #FFFFFF;
+  white-space: nowrap;
+  background-color: rgba(62, 62, 62, 1);
+  border: #959595 black 2px;
+
+  cursor: pointer !important;
+  margin-bottom : 130px;
+}
+
+.boutonValiderConnexion:hover{
+  opacity : 0.5;
+}
+
+.conteneurLienTarif{
+  margin-bottom : 90px;
+}

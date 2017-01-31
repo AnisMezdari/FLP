@@ -16,17 +16,3 @@ security:
 
     firewalls:            # Required
         # Examples:
-        main:
-            pattern: .*
-            form_login:
-                # login success redirecting options (read further below)
-                always_use_default_target_path: false
-                default_target_path:            /administrateur/accueil/affichage
-                target_path_parameter:          _target_path
-                use_referer:                    false
-
-    access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: ROLE_ADMIN }
-        - { path: ^/administrateur/, role: IS_AUTHENTICATED_ANONYMOUSLY }
