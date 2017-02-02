@@ -1,0 +1,76 @@
+.conteneurPhotosUser{
+  	background-color : white;
+}
+
+.conteneurPhotosUserPhoto{
+  margin-top : 60px;
+  display: inline-block!important;
+  text-align: left;
+  vertical-align: top;
+  background: #F5F5F5;
+  border-radius : 40px;
+  padding-left: 7%;
+  padding-top :  30px;
+  padding-bottom : 2%;
+  border : 2px solid black;
+  box-shadow: 10px 10px 7px #aaa;
+  margin-left : 40px;
+  margin-right : 40px;
+}
+
+
+.conteneurPhotoUserPhoto{
+  display: inline-block;
+  width : 22%;
+  margin-top : 5px;
+  border : 2px solid white;
+
+}
+
+.imageUser{
+  width : 100%;
+}
+
+.conteneurMonAlbum{
+  font: normal normal normal 40px/1.4em 'times new roman',times,serif;
+  color: #3E3E3E;
+  word-wrap: break-word;
+  letter-spacing: -0.06em;
+  font-style: italic;
+  font-size: 50px;
+  margin-bottom : 15px;
+
+}
+
+
+
+.conteneurLienUserAlbum{
+	font: normal normal normal 13px/1.4em helvetica-w01-light,helvetica-w02-light,sans-serif;
+	transition: color 0.4s ease 0s;
+	color: #FFFFFF;
+	white-space: nowrap;
+	background-color: rgba(62, 62, 62, 1);
+	border: solid rgba(204, 204, 204, 1) 0px;
+	cursor: pointer !important;
+	width : 125px;
+	height : 35px;
+	color : white;
+	padding-top : 10px;
+	font-size : 12px;
+	text-decoration: none;
+  text-align: center;
+}
+
+.conteneurLienUserAlbum:hover{
+	opacity : 0.5;
+}
+
+
+.lienUserAlbum{
+	color : white;
+	text-decoration: none!important;
+}
+
+.lienUserAlbum:hover{
+	color : white!important;
+}

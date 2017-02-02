@@ -11,12 +11,12 @@
     </div>
   </div>
 
-  <form class = "conteneurFormulaireConnexion">
+  <form action = "{{path('user_platform_testConnexion')}}" method = "post" class = "conteneurFormulaireConnexion">
     <div class = "conteneurIdentifiant">
       <input type = "text" name = "email" placeholder = "Email" class = "form-control"/>
     </div>
       <div class = "conteneurMotDePasse">
-        <input type = "text" name = "motdepasse" placeholder = "Mot de passe" class = "form-control" />
+        <input type = "password" name = "motdepasse" placeholder = "Mot de passe" class = "form-control" />
       </div>
 
     <input type = "submit" value = "Valider" class = "boutonValiderConnexion" />

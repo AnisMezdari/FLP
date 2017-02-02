@@ -8,6 +8,8 @@ use User\PlatformBundle\Entity\imageUser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\src\Accueil\PlatformBundle\Controller\AccueilController;
+use ZipArchive;
 
 class UserController extends Controller
 {
@@ -39,8 +41,10 @@ class UserController extends Controller
     $user->setPrenom($prenom);
     $user->setEmail($email);
     $motdepasse = $user->generationMDP();
+    // $motdepasse = "21071995anis";
+    // var_dump($motdepasse);
     $this->envoiMail($user->getEmail(),$motdepasse);
-    $user->cryptage();
+    $user->setMotDePasse($user->cryptage($motdepasse));
 
 
     $em = $this->getDoctrine()->getManager();
@@ -119,7 +123,15 @@ class UserController extends Controller
       $repositoryUser = $this->getDoctrine()->getRepository('UserPlatformBundle:user');
       $user = $repositoryUser->findOneBy(array("id" => $idUserInt));
 
+
       $path = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload';
+      $semiPath = $semiPath . "/" . $idUser;
+
+      if (!file_exists($path."/".$idUser)) {
+        mkdir($path."/".$idUser, 0777);
+      }
+      $path = $path . "/" . $idUser;
+
       $i = 0;
       foreach($images as $image){
           $filename = $image->getClientOriginalName();
@@ -150,6 +162,7 @@ class UserController extends Controller
               $listeUrlImage["id"][$i] = $imageUser->getId();
           }
       }
+      $this->zipDossierPhoto($idUser);
       $response = new JsonResponse();
       $response->setData($listeUrlImage);
       return $response;
@@ -193,8 +206,6 @@ class UserController extends Controller
       . "Nom de compte : " . $email . "<br>"
       . "Mot de passe : " . $motdepasse;
 
-      // var_dump($contenuMail);
-      // die;
       $message = \Swift_Message::newInstance()
       ->setSubject('Votre compte Fleur de lys')
       ->setFrom('contact@fleurdelysphotography.fr')
@@ -211,15 +222,71 @@ class UserController extends Controller
       return $this->render('UserPlatformBundle:User:connexion.html.twig');
   }
 
-  public function connexionFrontAction(){
+  public function connexionFrontAction(Request $request){
 
-    $prenom = $request->request->get('email');
-    $email = $request->request->get('motdepasse');
+    $email = $request->request->get('email');
+    $motDePasse = $request->request->get('motdepasse');
 
-    
+    $user = new User();
+    $motDePasseCrypte = $user->cryptage($motDePasse);
 
+    $em = $this->getDoctrine()->getManager();
+    $user = $em->getRepository('UserPlatformBundle:user')->findOneBy(array("motdepasse" => $motDePasseCrypte, "email" => $email));
+
+    if($user == NULL){
+      return $this->render('UserPlatformBundle:User:connexion.html.twig', array("error" => "Votre email ou votre mot de passe est incorrect"));
+    }else{
+       $_SESSION['idUser'] = $motDePasseCrypte;
+       $_SESSION['email'] = $email;
+      return $this->affichephotoFrontAction();
+    }
+    //  var_dump("bonjour");
+    // return $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig');
 
   }
 
+  public function affichephotoFrontAction(){
+
+    if($_SESSION['idUser'] != NULL){
+     $motDePasse = $_SESSION['idUser'];
+
+     $em = $this->getDoctrine()->getManager();
+     $user = $em->getRepository('UserPlatformBundle:user')->findOneBy(array("motdepasse" => $motDePasse, "email" =>  $_SESSION['email']));
+
+     $repository = $this->getDoctrine()->getRepository('UserPlatformBundle:user');
+     $qb = $repository->createQueryBuilder('user')
+     ->select('user,img')
+     ->leftjoin('UserPlatformBundle:imageUser', 'img', 'WITH' , 'img.user = user.id')
+     ->where('user.id = :idUser' )
+     // ->addSelect('EvenementPlatformBundle:imageEvenement')
+     ->setParameter('idUser', $user->getId())
+     ;
+
+     $userImage = $qb
+     ->getQuery()
+     ->getResult()
+     ;
+
+     return $this->render('UserPlatformBundle:User:photos.html.twig', array("images" => $userImage));
+
+   }else{
+     $AccueilController = new AccueilController();
+     $AccueilController->affichage_listePhotoAction();
+   }
+
+  }
+
+  public function zipDossierPhoto($idUser){
+    $pathImage = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/'. $idUser;
+    $zipPath = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/'. $idUser . '.zip';
+    $zipArchive = new ZipArchive();
+
+    if (!$zipArchive->open($zipPath, ZIPARCHIVE::CREATE))
+      die("Failed to create archive\n");
+
+    $zipArchive->addFile($pathImage . "/mariage-5.png", "mariage-top");
+    $zipArchive->close();
+
+  }
 
 }

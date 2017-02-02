@@ -175,9 +175,9 @@ class User
         return $this->motdepasse;
     }
 
-    public function cryptage()
+    public function cryptage($motDePasse)
     {
-      return $this->setMotDePasse(hash('md5', $this->motdepasse));
+      return hash('md5', $motDePasse);
 
     }
 

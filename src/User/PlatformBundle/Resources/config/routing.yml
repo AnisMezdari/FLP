@@ -6,3 +6,7 @@ user_platform_homepage:
 user_platform_connexion:
     path:     /connexion
     defaults: { _controller: UserPlatformBundle:User:afficheConnexionFront }
+
+user_platform_testConnexion:
+    path:     /test/connexion
+    defaults: { _controller: UserPlatformBundle:User:connexionFront }
