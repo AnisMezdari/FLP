@@ -43,8 +43,9 @@ class UserController extends Controller
     $motdepasse = $user->generationMDP();
     // $motdepasse = "21071995anis";
     // var_dump($motdepasse);
-    $this->envoiMail($user->getEmail(),$motdepasse);
+    // $this->envoiMail($user->getEmail(),$motdepasse);
     $user->setMotDePasse($user->cryptage($motdepasse));
+
 
 
     $em = $this->getDoctrine()->getManager();
@@ -54,6 +55,13 @@ class UserController extends Controller
     }catch(Exception $e){
         return new Response($e);
     }
+    $idUser = $user->getId();
+
+    $path = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload'; ;
+    if (!file_exists($path."/".$idUser)) {
+      mkdir($path."/".$idUser, 0777);
+    }
+    $this->creationZip($user->getId());
     return $this->affichageAction();
   }
 
@@ -127,9 +135,7 @@ class UserController extends Controller
       $path = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload';
       $semiPath = $semiPath . "/" . $idUser;
 
-      if (!file_exists($path."/".$idUser)) {
-        mkdir($path."/".$idUser, 0777);
-      }
+
       $path = $path . "/" . $idUser;
 
       $i = 0;
@@ -154,15 +160,17 @@ class UserController extends Controller
               // var_dump($imageEvenement);
               $em->persist($imageUser);
 
+
               try{
                   $em->flush();
               }catch(Exception $e){
                   return new Response($e);
               }
+              $this->ajoutFichierDansZip($path . '/' . $filename , $imageUser->getId(),$idUser);
               $listeUrlImage["id"][$i] = $imageUser->getId();
           }
       }
-      $this->zipDossierPhoto($idUser);
+
       $response = new JsonResponse();
       $response->setData($listeUrlImage);
       return $response;
@@ -175,8 +183,11 @@ class UserController extends Controller
       $params = json_decode($content ,true);
       $em = $this->getDoctrine()->getManager();
       $imageUser = $em->getRepository('UserPlatformBundle:imageUser')->find($params["idImageUser"]);
+
+      $this->SuppressionFichierDansZip($imageUser->getId(),$imageUser->getUser()->getId());
       $em->remove($imageUser);
       $em->flush();
+
       return  new Response("ok");
   }
 
@@ -266,7 +277,6 @@ class UserController extends Controller
      ->getQuery()
      ->getResult()
      ;
-
      return $this->render('UserPlatformBundle:User:photos.html.twig', array("images" => $userImage));
 
    }else{
@@ -276,15 +286,41 @@ class UserController extends Controller
 
   }
 
-  public function zipDossierPhoto($idUser){
-    $pathImage = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/'. $idUser;
-    $zipPath = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/'. $idUser . '.zip';
+  public function creationZip($idUser){
+    $pathImage = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/image/logoTest.png';
+    $zipPath = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/' . $idUser . '/' . $idUser . '.zip';
     $zipArchive = new ZipArchive();
 
     if (!$zipArchive->open($zipPath, ZIPARCHIVE::CREATE))
       die("Failed to create archive\n");
 
-    $zipArchive->addFile($pathImage . "/mariage-5.png", "mariage-top");
+    $zipArchive->addFile($pathImage, "Fleur_de_lys_photography.png");
+    $zipArchive->close();
+
+  }
+
+  public function ajoutFichierDansZip($lienImage , $idImage, $idUser){
+    $zipPath = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/' . $idUser . '/' . $idUser . '.zip';
+    $zipArchive = new ZipArchive();
+
+    if (!$zipArchive->open($zipPath))
+      die("Failed to create archive\n");
+
+
+    $zipArchive->addFile($lienImage, $idImage.".png");
+    $zipArchive->close();
+
+  }
+
+  public function SuppressionFichierDansZip($idImage, $idUser){
+    $zipPath = $this->get('kernel')->getRootDir() . '/../web/bundles/User/upload/' . $idUser . '/' . $idUser . '.zip';
+    $zipArchive = new ZipArchive();
+
+    if (!$zipArchive->open($zipPath))
+      die("Failed to create archive\n");
+
+
+    $zipArchive->deleteName($idImage.".png");
     $zipArchive->close();
 
   }

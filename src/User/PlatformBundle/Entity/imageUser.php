@@ -73,4 +73,8 @@ class imageUser
       $this->user = $user;
       return $this;
     }
+
+    public function getUser(){
+      return $this->user;
+    }
 }

@@ -16,6 +16,7 @@ $( ".boutonUploadOneUser" ).click(function() {
 	    processData: false,
 	    type: 'POST',
 	    success: function(data){
+				console.log(data);
 	        for(var i = 0 ; i < data.urlImage.length ; i++)
 	        {
 	        	var urlSuppression = $("#lienSuppressionPhotonu2OneUser").val();
@@ -64,7 +65,7 @@ function suppressionJsPhotoOneUser(object){
 	var idPhoto = element;
 	jQuery.ajax({
 	    url: lien,
-	    data: JSON.stringify({"idPhoto": idPhoto}),
+	    data: JSON.stringify({"idImageUser": idPhoto}),
 	    contentType: "application/json",
 	    type: 'POST',
 	    success: function(data){
@@ -79,7 +80,7 @@ function suppressionJsPhotoOneUser(object){
 }
 
 $( ".conteneurBoutonSupprimer" ).click(function() {
-	// console.log($(this).attr("id"));
+	console.log($(this).attr("id"));
 	var element = $(this).attr("id");
 	var lien = $("#lienSuppressionUser").val();
 	var idOneUser = element;
