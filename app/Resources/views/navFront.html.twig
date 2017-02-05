@@ -29,10 +29,26 @@
 				Contact
 			</a>
 		</div>
-		<div class = "frontNav">
-			<a href="{{ path('user_platform_connexion') }}">
-				Mon compte
-			</a>
-		</div>
+
+		{% if app.session.get('idUser') == null %}
+			<div class = "frontNav">
+				<a href="{{ path('user_platform_connexion') }}">
+					Mon compte
+				</a>
+			</div>
+			{% else %}
+				<div class = "frontNav">
+					<a href="{{ path('user_platform_monAlbum') }}">
+						Mon album
+					</a>
+				</div>
+
+			<div class = "frontNav">
+				<a href="{{ path('user_platform_deconnexion') }}">
+					Déconnexion
+				</a>
+			</div>
+		{% endif %}
+
 	</nav>
 </div>

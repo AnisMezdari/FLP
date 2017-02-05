@@ -23,11 +23,22 @@ class AccueilController extends Controller
     */
     public function affichage_listePhotoAction()
     {
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
         // récupération des données de la table Accueil
         $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
         $photos = $repository->findAll();
         // redirection vers la liste des photo
-    	return  $this->render('AccueilPlatformBundle:Accueil:index.html.twig', array("photos" => $photos));
+      return  $this->render('AccueilPlatformBundle:Accueil:index.html.twig', array("photos" => $photos));
+
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
+
 
     }
 
@@ -96,7 +107,9 @@ class AccueilController extends Controller
     */
     public function suppression_photoAction(Request $request)
     {
-
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
         $params = array();
         $content = $request->getContent();
         $params = json_decode($content ,true);
@@ -106,5 +119,10 @@ class AccueilController extends Controller
         $em->remove($accueil);
         $em->flush();
         return  new Response("ok");
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+      }
     }
 }

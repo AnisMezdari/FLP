@@ -12,11 +12,19 @@ class TarifController extends Controller
 {
     public function affichageAction()
     {
-    	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
-      $tarifs = $repository->findAll();
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+      	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarifs = $repository->findAll();
 
-      // Envoi des données à la vue
-      return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
+        // Envoi des données à la vue
+        return $this->render('TarifPlatformBundle:Tarif:tarif.html.twig',array("tarifs" =>$tarifs));
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+      }
     }
 
     public function affichageFrontAction(Request $request)
@@ -66,7 +74,7 @@ class TarifController extends Controller
         $repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
         $tarif = $repository->find($id);
 
-        // Envoi des données à la vue
+
         return $tarif;
     }
     public function getPremierTarif(){
@@ -78,47 +86,66 @@ class TarifController extends Controller
 
     public function modificationAction(Request $request)
     {
-    	$idTarif = $request->request->get('idTarif');
-    	$text = $request->request->get('textTarif');
-    	$prix = $request->request->get('prixTarif');
-    	$image = $request->request->get('inputFileTarif');
-      $fullTexte = $request->request->get('fullTexte');
-    	$images = $request->files->all();
+
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+      	$idTarif = $request->request->get('idTarif');
+      	$text = $request->request->get('textTarif');
+      	$prix = $request->request->get('prixTarif');
+      	$image = $request->request->get('inputFileTarif');
+        $fullTexte = $request->request->get('fullTexte');
+      	$images = $request->files->all();
 
 
-    	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
-      $tarif = $repository->findOneBy(array("id" => $idTarif));
-      $tarif->setTexte($text);
-      $tarif->setPrix($prix);
-      $tarif->setFullTexte($fullTexte);
+      	$repository = $this->getDoctrine()->getRepository('TarifPlatformBundle:tarif');
+        $tarif = $repository->findOneBy(array("id" => $idTarif));
+        $tarif->setTexte($text);
+        $tarif->setPrix($prix);
+        $tarif->setFullTexte($fullTexte);
 
-    	if($images["inputFileTarif"] != NULL ){
-			  $image = $this->uploadImage($image, $request);
-    		$tarif->setUrlImage($image);
-      }
+      	if($images["inputFileTarif"] != NULL ){
+  			  $image = $this->uploadImage($image, $request);
+      		$tarif->setUrlImage($image);
+        }
 
-      $em = $this->getDoctrine()->getManager();
-      $em->persist($tarif);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($tarif);
 
-      try{
-          $em->flush();
-      }catch(Exception $e){
-          return new Response($e);
-      }
-      return $this->affichageAction();
-
-    }
-    public function ajoutAction(){
-    	$newTarif = new Tarif();
-    	$newTarif->setUrlImage("/FLP/Symfony/web/bundles/Tarif/upload/logoFLS.gif");
-    	$em = $this->getDoctrine()->getManager();
-        $em->persist($newTarif);
         try{
             $em->flush();
         }catch(Exception $e){
             return new Response($e);
         }
         return $this->affichageAction();
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
+
+    }
+    public function ajoutAction(){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+      	$newTarif = new Tarif();
+      	$newTarif->setUrlImage("/FLP/Symfony/web/bundles/Tarif/upload/logoFLS.gif");
+      	$em = $this->getDoctrine()->getManager();
+          $em->persist($newTarif);
+          try{
+              $em->flush();
+          }catch(Exception $e){
+              return new Response($e);
+          }
+          return $this->affichageAction();
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function uploadImage($image , $request)
@@ -140,7 +167,9 @@ class TarifController extends Controller
     }
 
     public function suppressionAction(Request $request){
-
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
         $params = array();
         $content = $request->getContent();
         $params = json_decode($content ,true);
@@ -149,6 +178,12 @@ class TarifController extends Controller
         $em->remove($accueil);
         $em->flush();
         return  new Response("ok");
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
 
     }
 }

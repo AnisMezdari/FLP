@@ -15,15 +15,22 @@ class PresentationController extends Controller
 	 */
     public function affichageAction()
     {
+			$session = $this->get('session');
+			$motDePasse = $session->get('idUser');
+			if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+	        // Récupération des données de la table Accueil
+	        $repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
+	        $presentation = $repository->find(1);
 
-        // Récupération des données de la table Accueil
-        $repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
-        $presentation = $repository->find(1);
-
-        // Envoi des données à la vue
-        return $this->render('PresentationPlatformBundle:Presentation:index.html.twig',array("presentation" =>$presentation ));
+	        // Envoi des données à la vue
+	        return $this->render('PresentationPlatformBundle:Presentation:index.html.twig',array("presentation" =>$presentation ));
+			}else{
+				$repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+				$photos = $repository->findAll();
+				return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+			}
     }
-    
+
     public function frontAction(Request $request){
         $repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
         $presentation = $repository->find(1);
@@ -41,24 +48,32 @@ class PresentationController extends Controller
     	$image = $request->request->get('image');
         $images = $request->files->all();
 
-    	// Changement en base de données
-    	$repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
-        $presentation = $repository->find(1);
-        $presentation->setTitre($titre);
-        $presentation->setTexte($texte);
-        if($images["image"] != NULL ){
-            $image = $this->uploadImage($image, $request);
-            $presentation->setUrlImage($image);
-        }
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($presentation);
-        
-        try{
-            $em->flush();
-        }catch(Exception $e){
-            return new Response($e);
-        }
-        return $this->affichageAction();
+				$session = $this->get('session');
+				$motDePasse = $session->get('idUser');
+			if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+	    	// Changement en base de données
+	    	$repository = $this->getDoctrine()->getRepository('PresentationPlatformBundle:presentation');
+	        $presentation = $repository->find(1);
+	        $presentation->setTitre($titre);
+	        $presentation->setTexte($texte);
+	        if($images["image"] != NULL ){
+	            $image = $this->uploadImage($image, $request);
+	            $presentation->setUrlImage($image);
+	        }
+	        $em = $this->getDoctrine()->getManager();
+	        $em->persist($presentation);
+
+	        try{
+	            $em->flush();
+	        }catch(Exception $e){
+	            return new Response($e);
+	        }
+	        return $this->affichageAction();
+			}else{
+				$repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+				$photos = $repository->findAll();
+				return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+			}
     }
 
     public function uploadImage($image , $request)
@@ -68,7 +83,7 @@ class PresentationController extends Controller
         $semiPath = "/FLP/Symfony/web/bundles/Accueil/upload";
     	// initialisation du chemin pour le serveur afin d'upload l'image dedans
     	$path = $this->get('kernel')->getRootDir() . '/../web/bundles/Accueil/upload';
-    	// récupération de l'image 
+    	// récupération de l'image
     	$images = $request->files->all();
     	// var_dump($images)
     	$image = $images["image"];

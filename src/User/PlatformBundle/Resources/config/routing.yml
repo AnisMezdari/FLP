@@ -8,5 +8,13 @@ user_platform_connexion:
     defaults: { _controller: UserPlatformBundle:User:afficheConnexionFront }
 
 user_platform_testConnexion:
-    path:     /test/connexion
+    path:     /album
     defaults: { _controller: UserPlatformBundle:User:connexionFront }
+
+user_platform_monAlbum:
+    path:     /mon/album
+    defaults: { _controller: UserPlatformBundle:User:affichephotoFront }
+
+user_platform_deconnexion:
+    path:     /deconnexion
+    defaults: { _controller: UserPlatformBundle:User:deconnexionFront }

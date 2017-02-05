@@ -45,7 +45,7 @@ class tarif
     /**
      * @var string
      *
-     * @ORM\Column(name="fulltexte", type="text")
+     * @ORM\Column(name="fulltexte", type="text",nullable=true)
      */
     private $fullTexte;
 

@@ -16,10 +16,19 @@ class EvenementController extends Controller
 {
     public function affichageAction()
     {
-    	 $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:evenement');
-		 $modele = $repository->findAll();
-		// Envoi des données à la vue
-		return $this->render('EvenementPlatformBundle:Evenement:evenement.html.twig',array("evenements" =>$modele ));
+     $session = $this->get('session');
+     $motDePasse = $session->get('idUser');
+     if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+        $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:evenement');
+    		$modele = $repository->findAll();
+    		// Envoi des données à la vue
+    		return $this->render('EvenementPlatformBundle:Evenement:evenement.html.twig',array("evenements" =>$modele ));
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+      }
+
     }
 
     public function affichageFrontAction()
@@ -64,6 +73,9 @@ class EvenementController extends Controller
     }
 
     public function ajoutAction(){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
         $evenement = new Evenement();
         $evenement->setTitre(" Nouvelle événément");
 
@@ -75,12 +87,21 @@ class EvenementController extends Controller
             return new Response($e);
         }
         return $this->affichageAction();
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function suppressionAction(Request $request){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
         $params = array();
         $content = $request->getContent();
-        $params = json_decode($content ,true); 
+        $params = json_decode($content ,true);
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('EvenementPlatformBundle:evenement')->find($params["idEvenement"]);
         $articles = $em->getRepository('EvenementPlatformBundle:imageEvenement')->findBy(array("evenement" => $evenement ));
@@ -93,43 +114,61 @@ class EvenementController extends Controller
         $em->remove($evenement);
         $em->flush();
         return  new Response("ok");
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function affichageArticleAction(Request $request)
     {
-    	$idEvenement = $request->request->get('idEvenement');
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
+      	$idEvenement = $request->request->get('idEvenement');
 
-	 //   	$repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:imageEvenement');
-		// $evenemntImage = $repository->findBy(array("evenement" => $idEvenement));
+  	 //   	$repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:imageEvenement');
+  		// $evenemntImage = $repository->findBy(array("evenement" => $idEvenement));
 
 
-        $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:evenement');
-        $qb = $repository->createQueryBuilder('event')
-        ->select('event,img')
-        ->leftjoin('EvenementPlatformBundle:imageEvenement', 'img', 'WITH' , 'img.evenement = event.id')
-        ->where('event.id = :idEvent' )
-        // ->addSelect('EvenementPlatformBundle:imageEvenement')
-        ->setParameter('idEvent', $idEvenement)
-        ;
+          $repository = $this->getDoctrine()->getRepository('EvenementPlatformBundle:evenement');
+          $qb = $repository->createQueryBuilder('event')
+          ->select('event,img')
+          ->leftjoin('EvenementPlatformBundle:imageEvenement', 'img', 'WITH' , 'img.evenement = event.id')
+          ->where('event.id = :idEvent' )
+          // ->addSelect('EvenementPlatformBundle:imageEvenement')
+          ->setParameter('idEvent', $idEvenement)
+          ;
 
-        // $em = $this->getDoctrine()->getManager();
-        // $query = $em->createQuery('SELECT image FROM EvenementPlatformBundle:imageEvenement image  RIGHT JOIN image.evenement_id WHERE event.id = image.evenement AND event.id = :id ');
-        // // $query = $em->createQuery('SELECT event FROM EvenementPlatformBundle:evenement event ');
-        // $query->setParameter('id', $idEvenement);
-        // $evenemntImage = $query->getResult();
+          // $em = $this->getDoctrine()->getManager();
+          // $query = $em->createQuery('SELECT image FROM EvenementPlatformBundle:imageEvenement image  RIGHT JOIN image.evenement_id WHERE event.id = image.evenement AND event.id = :id ');
+          // // $query = $em->createQuery('SELECT event FROM EvenementPlatformBundle:evenement event ');
+          // $query->setParameter('id', $idEvenement);
+          // $evenemntImage = $query->getResult();
 
-        $evenemntImage = $qb
-        ->getQuery()
-        ->getResult()
-        ;
+          $evenemntImage = $qb
+          ->getQuery()
+          ->getResult()
+          ;
 
-        // var_dump($evenemntImage);
-        // die();
+          // var_dump($evenemntImage);
+          // die();
 
         return $this->render('EvenementPlatformBundle:Evenement:evenementArticle.html.twig', array("evenements" => $evenemntImage));
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function modificationArticleAction(Request $request){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
 
         $idEvenement = $request->request->get('idEvenement');
 
@@ -145,18 +184,27 @@ class EvenementController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($evenement);
-        
+
         try{
             $em->flush();
         }catch(Exception $e){
             return new Response($e);
         }
         return $this->affichageAction();
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function ajoutArticleAction(Request $request){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
 
-        // récupération de la requête 
+        // récupération de la requête
         $semiPath = "/Symfony/web/bundles/Evenement/upload";
 
         $images = $request->files->all();
@@ -183,12 +231,12 @@ class EvenementController extends Controller
                 // Ajout du lien en BDD
                 $imageEvenement = new imageEvenement();
                 $imageEvenement->setUrlImage($urlImage);
-                
+
                 $imageEvenement->setEvenement($evenement);
                 $em = $this->getDoctrine()->getManager();
                 // var_dump($imageEvenement);
                 $em->persist($imageEvenement);
-                
+
                 try{
                     $em->flush();
                 }catch(Exception $e){
@@ -200,17 +248,32 @@ class EvenementController extends Controller
         $response = new JsonResponse();
         $response->setData($listeUrlImage);
         return $response;
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 
     public function suppressionArticleAction(Request $request){
+      $session = $this->get('session');
+      $motDePasse = $session->get('idUser');
+      if($motDePasse == "d9cd8d70637282cd0685c962166387e2" && $session->get('email') == "imen"){
 
         $params = array();
         $content = $request->getContent();
-        $params = json_decode($content ,true); 
+        $params = json_decode($content ,true);
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('EvenementPlatformBundle:imageEvenement')->find($params["idPhoto"]);
         $em->remove($article);
         $em->flush();
         return  new Response("ok");
+      }else{
+        $repository = $this->getDoctrine()->getRepository('AccueilPlatformBundle:Accueil');
+        $photos = $repository->findAll();
+        return  $this->render('AccueilPlatformBundle:Accueil:frontAccueil.html.twig', array("photos" => $photos));
+
+      }
     }
 }
